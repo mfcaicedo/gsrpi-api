@@ -1,5 +1,4 @@
 package co.unicauca.gsrpi_api.auth.infrastructure.output.entity;
-
 import jakarta.persistence.*;
 
 @Entity
@@ -9,11 +8,13 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "usuario_id")
     long userId;
-    @Column(name = "nombre_usuario")
+    @Column(name = "uid",columnDefinition = "TEXT", nullable = false, unique = true)
+    String uid;
+    @Column(name = "nombre_usuario", columnDefinition = "TEXT", nullable = true)
     String username;
-    @Column(name = "correo")
+    @Column(name = "correo", columnDefinition = "TEXT", nullable = false, unique = true)
     String email;
-    @Column(name = "contrasenia")
+    @Column(name = "contrasenia", columnDefinition = "TEXT", nullable = true)
     String password;
 
     public UserEntity() {
@@ -26,6 +27,14 @@ public class UserEntity {
 
     public UserEntity(long userId, String username, String email, String password) {
         this.userId = userId;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
+    public UserEntity(long userId, String uid, String username, String email, String password) {
+        this.userId = userId;
+        this.uid = uid;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -61,5 +70,13 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

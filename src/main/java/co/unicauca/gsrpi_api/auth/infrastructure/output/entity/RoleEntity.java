@@ -9,9 +9,9 @@ public class RoleEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rol_id")
     private long roleId;
-    @Column(name = "nombre", unique = true)
+    @Column(name = "nombre", columnDefinition = "TEXT", unique = true, nullable = false)
     private String name;
-    @Column(name = "descripcion")
+    @Column(name = "descripcion", columnDefinition = "TEXT", nullable = true)
     private String description;
 
     public RoleEntity() {

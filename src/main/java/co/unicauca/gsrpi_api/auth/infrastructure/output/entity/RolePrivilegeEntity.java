@@ -11,11 +11,11 @@ public class RolePrivilegeEntity {
     private long rolePrivilegeId;
 
     @ManyToOne
-    @JoinColumn(name = "rol_id")
+    @JoinColumn(name = "rol_id", nullable = false)
     private RoleEntity role;
 
     @ManyToOne
-    @JoinColumn(name = "privilegio_id")
+    @JoinColumn(name = "privilegio_id", nullable = false)
     private PrivilegeEntity privilege;
 
 }

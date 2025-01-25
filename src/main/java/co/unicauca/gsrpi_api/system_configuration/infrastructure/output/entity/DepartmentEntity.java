@@ -9,13 +9,13 @@ public class DepartmentEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "departamento_id")
     private long departmentId;
-    @Column(name = "nombre")
+    @Column(name = "nombre", columnDefinition = "TEXT", nullable = false)
     private String name;
-    @Column(name = "ubicacion", nullable = true)
+    @Column(name = "ubicacion",columnDefinition = "TEXT", nullable = true)
     private String location;
 
     @ManyToOne
-    @JoinColumn(name = "facultad_id")
+    @JoinColumn(name = "facultad_id", nullable = false)
     private FacultyEntity faculty;
 
     public DepartmentEntity() {

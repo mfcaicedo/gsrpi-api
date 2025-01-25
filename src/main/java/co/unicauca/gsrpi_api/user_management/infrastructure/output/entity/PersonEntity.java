@@ -11,22 +11,22 @@ public class PersonEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "persona_id")
     private Long personId;
-    @Column(name = "primer_nombre")
+    @Column(name = "primer_nombre", columnDefinition = "TEXT", nullable = false)
     private String firstName;
-    @Column(name = "segundo_nombre")
+    @Column(name = "segundo_nombre", columnDefinition = "TEXT")
     private String secondName;
-    @Column(name = "primer_apellido")
+    @Column(name = "primer_apellido", columnDefinition = "TEXT", nullable = false)
     private String firstLastName;
-    @Column(name = "segundo_apellido")
+    @Column(name = "segundo_apellido", columnDefinition = "TEXT")
     private String secondLastName;
-    @Column(name = "tipo_identificacion_cat_id")
+    @Column(name = "tipo_identificacion_cat_id", nullable = false)
     private Long identificationTypeCatId;
-    @Column(name = "numero_identificacion",columnDefinition = "BIGINT", unique = true)
+    @Column(name = "numero_identificacion",columnDefinition = "BIGINT",nullable = false, unique = true)
     private String identificationNumber;
     @Size(max = 10, min = 10)
     @Column(name = "telefono", nullable = true, length = 10)
     private String phone;
-    @Column(name = "correo_institucional",columnDefinition = "TEXT", unique = true)
+    @Column(name = "correo_institucional",columnDefinition = "TEXT",nullable = false, unique = true)
     private String email;
     @Column(name = "direccion",columnDefinition = "TEXT")
     private String address;
@@ -37,7 +37,7 @@ public class PersonEntity {
 
     //Relacion many to one con la tabla usuario
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "usuario_id", nullable = false)
     private UserEntity user;
 
     public PersonEntity() {

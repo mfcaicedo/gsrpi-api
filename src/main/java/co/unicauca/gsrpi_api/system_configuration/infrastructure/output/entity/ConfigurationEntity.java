@@ -11,7 +11,7 @@ public class ConfigurationEntity {
     private long configurationId;
 
     @OneToOne
-    @JoinColumn(name = "facultad_id")
+    @JoinColumn(name = "facultad_id", nullable = false)
     private FacultyEntity faculty;
 
     public ConfigurationEntity() { }

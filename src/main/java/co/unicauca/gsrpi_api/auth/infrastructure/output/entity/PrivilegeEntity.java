@@ -9,9 +9,9 @@ public class PrivilegeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "privilegio_id")
     private long privilegeId;
-    @Column(name = "nombre", nullable = false, length = 50, unique = true)
+    @Column(name = "nombre",columnDefinition = "TEXT", nullable = false, unique = true)
     private String name;
-    @Column(name = "descripcion", nullable = true, length = 200)
+    @Column(name = "descripcion",columnDefinition = "TEXT", nullable = true, length = 200)
     private String description;
 
 }

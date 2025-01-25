@@ -10,11 +10,11 @@ public class UserRoleEntity {
     private long userRoleId;
     //Llave foranea de rol
     @ManyToOne
-    @JoinColumn(name = "rol_id")
+    @JoinColumn(name = "rol_id", nullable = false)
     private RoleEntity role;
     //Llave foranea de usuario
     @ManyToOne
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "usuario_id", nullable = false)
     private UserEntity user;
 
     public UserRoleEntity() {
