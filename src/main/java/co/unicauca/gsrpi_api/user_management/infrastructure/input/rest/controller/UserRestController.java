@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("gsrpi-api/api")
-@CrossOrigin(origins = "*", allowedHeaders = "POST, GET, PUT, DELETE, OPTIONS, PATCH")
+@RequestMapping("gsrpi-api/v1")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserRestController {
 
     private final GetAllPaginatedUsersPort getAllPaginatedUsersPort;

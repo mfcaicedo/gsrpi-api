@@ -1,4 +1,4 @@
-package co.unicauca.gsrpi_api.user_management.infrastructure.output.entity;
+package co.unicauca.gsrpi_api.auth.infrastructure.output.entity;
 
 import jakarta.persistence.*;
 
