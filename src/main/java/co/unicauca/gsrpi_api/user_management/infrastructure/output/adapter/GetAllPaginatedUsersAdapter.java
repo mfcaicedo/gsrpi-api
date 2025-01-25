@@ -1,13 +1,11 @@
 package co.unicauca.gsrpi_api.user_management.infrastructure.output.adapter;
 
+import co.unicauca.gsrpi_api.auth.infrastructure.output.entity.UserEntity;
 import co.unicauca.gsrpi_api.user_management.application.output.GetAllPaginatedUsersOutPort;
 import co.unicauca.gsrpi_api.user_management.domain.model.User;
-import co.unicauca.gsrpi_api.user_management.infrastructure.output.entity.UserEntity;
 import co.unicauca.gsrpi_api.user_management.infrastructure.output.mapper.MapStructMapper;
 import co.unicauca.gsrpi_api.user_management.infrastructure.output.respository.UserRepository;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

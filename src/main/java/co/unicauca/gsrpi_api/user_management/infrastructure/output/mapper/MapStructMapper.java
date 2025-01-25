@@ -1,7 +1,7 @@
 package co.unicauca.gsrpi_api.user_management.infrastructure.output.mapper;
 
+import co.unicauca.gsrpi_api.auth.infrastructure.output.entity.UserEntity;
 import co.unicauca.gsrpi_api.user_management.domain.model.User;
-import co.unicauca.gsrpi_api.user_management.infrastructure.output.entity.UserEntity;
 import org.mapstruct.Mapper;
 
 import java.util.List;
