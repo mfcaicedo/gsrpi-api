@@ -1,14 +1,12 @@
 package co.unicauca.gsrpi_api.system_configuration.domain.model.dto.request;
 
 public class ConfigurationRequest {
-    private long configurationId;
     private FacultyRequest faculty;
 
     public ConfigurationRequest() {
     }
 
-    public ConfigurationRequest(long configurationId,FacultyRequest faculty) {
-        this.configurationId = configurationId;
+    public ConfigurationRequest(FacultyRequest faculty) {
         this.faculty = faculty;
     }
 
@@ -18,13 +16,5 @@ public class ConfigurationRequest {
 
     public void setFaculty(FacultyRequest faculty) {
         this.faculty = faculty;
-    }
-
-    public long getConfigurationId() {
-        return configurationId;
-    }
-
-    public void setConfigurationId(long configurationId) {
-        this.configurationId = configurationId;
     }
 }

@@ -1,5 +1,6 @@
 package co.unicauca.gsrpi_api.system_configuration.infrastructure.input.rest.controller;
 
+import co.unicauca.gsrpi_api.auth.domain.model.dto.response.UserResponse;
 import co.unicauca.gsrpi_api.system_configuration.application.port.input.GetAllFacultiesPort;
 import co.unicauca.gsrpi_api.system_configuration.application.port.input.SaveConfigurationPort;
 import co.unicauca.gsrpi_api.system_configuration.domain.model.dto.request.ConfigurationRequest;
