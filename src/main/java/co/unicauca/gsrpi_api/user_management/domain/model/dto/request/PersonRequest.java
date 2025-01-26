@@ -1,49 +1,27 @@
-package co.unicauca.gsrpi_api.user_management.infrastructure.output.entity;
+package co.unicauca.gsrpi_api.user_management.domain.model.dto.request;
 
-import co.unicauca.gsrpi_api.auth.infrastructure.output.entity.UserEntity;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
+import co.unicauca.gsrpi_api.auth.domain.model.User;
+import co.unicauca.gsrpi_api.auth.domain.model.dto.request.UserRequest;
 
-@Entity
-@Table(name = "persona")
-public class PersonEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "persona_id")
-    private Long personId;
-    @Column(name = "primer_nombre", columnDefinition = "TEXT", nullable = false)
+public class PersonRequest {
     private String firstName;
-    @Column(name = "segundo_nombre", columnDefinition = "TEXT")
     private String secondName;
-    @Column(name = "primer_apellido", columnDefinition = "TEXT", nullable = false)
     private String firstLastName;
-    @Column(name = "segundo_apellido", columnDefinition = "TEXT")
     private String secondLastName;
-    @Column(name = "tipo_identificacion_cat_id", nullable = false)
     private Long identificationTypeCatId;
-    @Column(name = "numero_identificacion",columnDefinition = "BIGINT",nullable = false, unique = true)
     private Long identificationNumber;
-    @Size(max = 10, min = 10)
-    @Column(name = "telefono", nullable = true, length = 10)
     private String phone;
-    @Column(name = "correo_institucional",columnDefinition = "TEXT",nullable = false, unique = true)
     private String email;
-    @Column(name = "direccion",columnDefinition = "TEXT")
-    private String address;
 
     //Relacion debil con la tabla configuracion
-    @Column(name = "configuracion_id")
     private Long configurationId;
+    //Relacion many to one con la tabla usuario
+    private UserRequest user;
 
-    //Relacion one to one con la tabla usuario
-    @OneToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private UserEntity user;
-
-    public PersonEntity() {
+    public PersonRequest() {
     }
 
-    public PersonEntity(String firstName, String secondName, String firstLastName, String secondLastName, Long identificationTypeCatId, Long identificationNumber, String phone, String email, String address, Long configurationId, UserEntity user) {
+    public PersonRequest(String firstName, String secondName, String firstLastName, String secondLastName, Long identificationTypeCatId, Long identificationNumber, String phone, String email, Long configurationId, UserRequest user) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.firstLastName = firstLastName;
@@ -52,17 +30,8 @@ public class PersonEntity {
         this.identificationNumber = identificationNumber;
         this.phone = phone;
         this.email = email;
-        this.address = address;
         this.configurationId = configurationId;
         this.user = user;
-    }
-
-    public Long getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(Long personId) {
-        this.personId = personId;
     }
 
     public String getFirstName() {
@@ -129,14 +98,6 @@ public class PersonEntity {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public Long getConfigurationId() {
         return configurationId;
     }
@@ -145,11 +106,11 @@ public class PersonEntity {
         this.configurationId = configurationId;
     }
 
-    public UserEntity getUser() {
+    public UserRequest getUser() {
         return user;
     }
 
-    public void setUser(UserEntity user) {
+    public void setUser(UserRequest user) {
         this.user = user;
     }
 }

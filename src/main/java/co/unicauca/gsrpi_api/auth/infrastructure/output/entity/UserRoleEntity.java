@@ -1,8 +1,9 @@
 package co.unicauca.gsrpi_api.auth.infrastructure.output.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "usuarioRol")
+@Table(name = "usuario_rol")
 public class UserRoleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

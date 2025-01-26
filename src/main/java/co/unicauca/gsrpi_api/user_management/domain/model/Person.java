@@ -1,49 +1,29 @@
-package co.unicauca.gsrpi_api.user_management.infrastructure.output.entity;
+package co.unicauca.gsrpi_api.user_management.domain.model;
 
-import co.unicauca.gsrpi_api.auth.infrastructure.output.entity.UserEntity;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
+import co.unicauca.gsrpi_api.auth.domain.model.User;
 
-@Entity
-@Table(name = "persona")
-public class PersonEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "persona_id")
+public class Person {
     private Long personId;
-    @Column(name = "primer_nombre", columnDefinition = "TEXT", nullable = false)
     private String firstName;
-    @Column(name = "segundo_nombre", columnDefinition = "TEXT")
     private String secondName;
-    @Column(name = "primer_apellido", columnDefinition = "TEXT", nullable = false)
     private String firstLastName;
-    @Column(name = "segundo_apellido", columnDefinition = "TEXT")
     private String secondLastName;
-    @Column(name = "tipo_identificacion_cat_id", nullable = false)
     private Long identificationTypeCatId;
-    @Column(name = "numero_identificacion",columnDefinition = "BIGINT",nullable = false, unique = true)
     private Long identificationNumber;
-    @Size(max = 10, min = 10)
-    @Column(name = "telefono", nullable = true, length = 10)
     private String phone;
-    @Column(name = "correo_institucional",columnDefinition = "TEXT",nullable = false, unique = true)
     private String email;
-    @Column(name = "direccion",columnDefinition = "TEXT")
     private String address;
 
     //Relacion debil con la tabla configuracion
-    @Column(name = "configuracion_id")
     private Long configurationId;
+    //Relacion many to one con la tabla usuario
+    private User user;
 
-    //Relacion one to one con la tabla usuario
-    @OneToOne
-    @JoinColumn(name = "usuario_id", nullable = false)
-    private UserEntity user;
-
-    public PersonEntity() {
+    public Person() {
     }
 
-    public PersonEntity(String firstName, String secondName, String firstLastName, String secondLastName, Long identificationTypeCatId, Long identificationNumber, String phone, String email, String address, Long configurationId, UserEntity user) {
+    public Person(Long personId, String firstName, String secondName, String firstLastName, String secondLastName, Long identificationTypeCatId, Long identificationNumber, String phone, String email, String address, Long configurationId, User user) {
+        this.personId = personId;
         this.firstName = firstName;
         this.secondName = secondName;
         this.firstLastName = firstLastName;
@@ -145,11 +125,11 @@ public class PersonEntity {
         this.configurationId = configurationId;
     }
 
-    public UserEntity getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(UserEntity user) {
+    public void setUser(User user) {
         this.user = user;
     }
 }

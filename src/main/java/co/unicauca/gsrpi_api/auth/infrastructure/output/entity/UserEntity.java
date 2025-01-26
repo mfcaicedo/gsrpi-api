@@ -1,5 +1,8 @@
 package co.unicauca.gsrpi_api.auth.infrastructure.output.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "usuario")
@@ -16,6 +19,10 @@ public class UserEntity {
     String email;
     @Column(name = "contrasenia", columnDefinition = "TEXT", nullable = true)
     String password;
+
+    //Relacion one to many con usuarioRol
+    @OneToMany(cascade = {CascadeType.ALL},fetch = FetchType.LAZY, mappedBy = "user")
+    private List<UserRoleEntity> userRoles;
 
     public UserEntity() {
     }
@@ -38,6 +45,15 @@ public class UserEntity {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public UserEntity(long userId, String uid, String username, String email, String password, List<UserRoleEntity> userRoleEntity) {
+        this.userId = userId;
+        this.uid = uid;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.userRoles = userRoleEntity;
     }
 
     public long getUserId() {
@@ -78,5 +94,13 @@ public class UserEntity {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public List<UserRoleEntity> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(List<UserRoleEntity> userRoleEntity) {
+        this.userRoles = userRoleEntity;
     }
 }
