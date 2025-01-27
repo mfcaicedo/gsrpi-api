@@ -28,9 +28,13 @@ public class ApplicationManagementAdapter implements ApplicationManagementOutPor
 
     @Override
     public ApplicationTemp updateApplicationTemp(ApplicationTemp applicationTemp) {
-        return this.mapStructApplicationsMapper.applicationTempEntityToApplicationTemp(
-                this.applicationTempRepository.save(
-                        this.mapStructApplicationsMapper.applicationTempToApplicationTempEntity(applicationTemp))
-        );
+        //Todo: Veririfco si el id de la solicitud temporal existe
+        if (this.applicationTempRepository.existsById(applicationTemp.getApplicationTempId())) {
+            return this.mapStructApplicationsMapper.applicationTempEntityToApplicationTemp(
+                    this.applicationTempRepository.save(
+                            this.mapStructApplicationsMapper.applicationTempToApplicationTempEntity(applicationTemp))
+            );
+        }
+        return null;
     }
 }
