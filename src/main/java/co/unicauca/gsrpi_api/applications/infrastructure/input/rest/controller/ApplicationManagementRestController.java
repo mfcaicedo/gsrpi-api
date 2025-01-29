@@ -3,6 +3,7 @@ package co.unicauca.gsrpi_api.applications.infrastructure.input.rest.controller;
 import co.unicauca.gsrpi_api.applications.application.port.input.ApplicationManagementPort;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationTempRequest;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.response.ApplicationTempResponse;
+import co.unicauca.gsrpi_api.applications.domain.model.dto.response.TeacherResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,14 @@ public class ApplicationManagementRestController {
     public ResponseEntity<ApplicationTempResponse> updateTemporaryApplication(@RequestBody ApplicationTempRequest applicationTempRequest) {
         return ResponseEntity.status(HttpStatus.OK).body(
                 this.applicationManagementPort.updateApplicationTemp(applicationTempRequest)
+        );
+    }
+
+    @GetMapping("obtener-docente-por-id-persona/{personId}")
+    public ResponseEntity<TeacherResponse> getTeacherByPersonId(@PathVariable Long personId) {
+        System.out.println("person id: " + personId);
+        return ResponseEntity.status(HttpStatus.OK).body(
+                this.applicationManagementPort.getTeacherByPersonId(personId)
         );
     }
 }

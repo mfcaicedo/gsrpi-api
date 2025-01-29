@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "produccion_archivo")
-public class ProductionFile {
+public class ProductionFileEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "produccion_archivo_id")
@@ -18,10 +18,10 @@ public class ProductionFile {
     @JoinColumn(name = "produccion_id", nullable = false)
     private ProductionEntity production;
 
-    public ProductionFile() {
+    public ProductionFileEntity() {
     }
 
-    public ProductionFile(Long productionFileId, String fileId, String name, ProductionEntity production) {
+    public ProductionFileEntity(Long productionFileId, String fileId, String name, ProductionEntity production) {
         this.productionFileId = productionFileId;
         this.fileId = fileId;
         this.name = name;

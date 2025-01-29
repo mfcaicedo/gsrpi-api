@@ -5,6 +5,7 @@ import co.unicauca.gsrpi_api.applications.application.port.input.ApplicationMana
 import co.unicauca.gsrpi_api.applications.application.port.output.ApplicationManagementOutPort;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationTempRequest;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.response.ApplicationTempResponse;
+import co.unicauca.gsrpi_api.applications.domain.model.dto.response.TeacherResponse;
 
 public class ApplicationManagementUseCase implements ApplicationManagementPort {
     private final ApplicationManagementOutPort applicationManagementOutPort;
@@ -30,5 +31,10 @@ public class ApplicationManagementUseCase implements ApplicationManagementPort {
                 this.applicationManagementOutPort.updateApplicationTemp(
                         this.applicationsMapper.applicationTempRequestToApplicationTemp(applicationTempRequest))
         );
+    }
+
+    @Override
+    public TeacherResponse getTeacherByPersonId(Long personId) {
+        return this.applicationsMapper.teacherToTeacherResponse(this.applicationManagementOutPort.getTeacherByPersonId(personId));
     }
 }
