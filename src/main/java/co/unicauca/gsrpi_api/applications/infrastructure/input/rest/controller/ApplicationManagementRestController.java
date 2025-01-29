@@ -40,10 +40,26 @@ public class ApplicationManagementRestController {
                 this.applicationManagementPort.getTeacherByPersonId(personId)
         );
     }
+
     @PostMapping("crear-solicitud-reconocida")
     public ResponseEntity<ApplicationRecognizedResponse> createRecognizedApplication(@RequestBody ApplicationRecognizedRequest applicationRecognizedRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 this.applicationManagementPort.createApplicationRecognized(applicationRecognizedRequest)
         );
     }
+
+    @GetMapping("obtener-tipo-produccion-por-id/{typeProductionId}")
+    public ResponseEntity<?> getTypeProductionById(@PathVariable Long typeProductionId) {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                this.applicationManagementPort.getTypeProductionById(typeProductionId)
+        );
+    }
+
+    @GetMapping("obtener-tipo-produccion-por-alias/{alias}")
+    public ResponseEntity<?> getTypeProductionByAlias(@PathVariable String alias) {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                this.applicationManagementPort.getTypeProductionByAlias(alias)
+        );
+    }
+
 }

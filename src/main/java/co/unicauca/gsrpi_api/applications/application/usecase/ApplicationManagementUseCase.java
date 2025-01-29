@@ -9,6 +9,7 @@ import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationTe
 import co.unicauca.gsrpi_api.applications.domain.model.dto.response.ApplicationRecognizedResponse;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.response.ApplicationTempResponse;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.response.TeacherResponse;
+import co.unicauca.gsrpi_api.applications.domain.model.dto.response.TypeProductionResponse;
 
 public class ApplicationManagementUseCase implements ApplicationManagementPort {
     private final ApplicationManagementOutPort applicationManagementOutPort;
@@ -46,6 +47,20 @@ public class ApplicationManagementUseCase implements ApplicationManagementPort {
         return this.applicationsMapper.ApplicationRecognizedToApplicationRecognizedResponse(
                 this.applicationManagementOutPort.createApplicationRecognized(
                         this.applicationsMapper.applicationRecognizedRequestToApplicationRecognized(applicationRecognizedRequest))
+        );
+    }
+
+    @Override
+    public TypeProductionResponse getTypeProductionById(Long typeProductionId) {
+        return this.applicationsMapper.typeProductionToTypeProductionResponse(
+                this.applicationManagementOutPort.getTypeProductionById(typeProductionId)
+        );
+    }
+
+    @Override
+    public TypeProductionResponse getTypeProductionByAlias(String alias) {
+        return this.applicationsMapper.typeProductionToTypeProductionResponse(
+                this.applicationManagementOutPort.getTypeProductionByAlias(alias)
         );
     }
 }

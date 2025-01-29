@@ -16,6 +16,8 @@ public class TypeProductionEntity {
     @Column(name = "estructura_json", columnDefinition = "jsonb", nullable = false)
     @Type(JsonBinaryType.class)
     private String jsonStructure;
+    @Column(name = "alias", columnDefinition = "TEXT", nullable = false, unique = true)
+    private String alias;
     @Column(name = "calalogos_ids", columnDefinition = "jsonb", nullable = true)
     @Type(JsonBinaryType.class)
     private String catalogsIds;
@@ -23,10 +25,11 @@ public class TypeProductionEntity {
     public TypeProductionEntity() {
     }
 
-    public TypeProductionEntity(Long typeProductionId, String name, String jsonStructure, String catalogsIds) {
+    public TypeProductionEntity(Long typeProductionId, String name, String jsonStructure, String alias, String catalogsIds) {
         this.typeProductionId = typeProductionId;
         this.name = name;
         this.jsonStructure = jsonStructure;
+        this.alias = alias;
         this.catalogsIds = catalogsIds;
     }
 
@@ -55,10 +58,19 @@ public class TypeProductionEntity {
     }
 
     public String getCatalogsIds() {
+
         return catalogsIds;
     }
 
     public void setCatalogsIds(String catalogsIds) {
         this.catalogsIds = catalogsIds;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
     }
 }

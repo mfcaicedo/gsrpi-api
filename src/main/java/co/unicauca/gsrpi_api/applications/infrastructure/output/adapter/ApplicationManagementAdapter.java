@@ -4,6 +4,7 @@ import co.unicauca.gsrpi_api.applications.application.port.output.ApplicationMan
 import co.unicauca.gsrpi_api.applications.domain.model.ApplicationRecognized;
 import co.unicauca.gsrpi_api.applications.domain.model.ApplicationTemp;
 import co.unicauca.gsrpi_api.applications.domain.model.Teacher;
+import co.unicauca.gsrpi_api.applications.domain.model.TypeProduction;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.ApplicationRecognizedEntity;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.ApplicationTempEntity;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.TeacherEntity;
@@ -11,6 +12,7 @@ import co.unicauca.gsrpi_api.applications.infrastructure.output.mapper.MapStruct
 import co.unicauca.gsrpi_api.applications.infrastructure.output.repository.ApplicationRecognizedRepository;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.repository.ApplicationTempRepository;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.repository.TeacherRepository;
+import co.unicauca.gsrpi_api.applications.infrastructure.output.repository.TypeProductionRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,15 +21,18 @@ public class ApplicationManagementAdapter implements ApplicationManagementOutPor
     private final ApplicationTempRepository applicationTempRepository;
     private final TeacherRepository teacherRepository;
     private final ApplicationRecognizedRepository applicationRecognizedRepository;
+    private final TypeProductionRepository typeProductionRepository;
     private final MapStructApplicationsMapper mapStructApplicationsMapper;
 
     public ApplicationManagementAdapter(ApplicationTempRepository applicationTempRepository,
                                         TeacherRepository teacherRepository,
                                         ApplicationRecognizedRepository applicationRecognizedRepository,
+                                        TypeProductionRepository typeProductionRepository,
                                         MapStructApplicationsMapper mapStructApplicationsMapper) {
         this.applicationTempRepository = applicationTempRepository;
         this.teacherRepository = teacherRepository;
         this.applicationRecognizedRepository = applicationRecognizedRepository;
+        this.typeProductionRepository = typeProductionRepository;
         this.mapStructApplicationsMapper = mapStructApplicationsMapper;
     }
 
@@ -62,6 +67,20 @@ public class ApplicationManagementAdapter implements ApplicationManagementOutPor
         return this.mapStructApplicationsMapper.applicationRecognizedEntityToApplicationRecognized(
                 this.applicationRecognizedRepository.save(
                         this.mapStructApplicationsMapper.applicationRecognizedToApplicationRecognizedEntity(applicationRecognized))
+        );
+    }
+
+    @Override
+    public TypeProduction getTypeProductionById(Long typeProductionId) {
+        return this.mapStructApplicationsMapper.typeProductionEntityToTypeProduction(
+                this.typeProductionRepository.findById(typeProductionId).orElse(null)
+        );
+    }
+
+    @Override
+    public TypeProduction getTypeProductionByAlias(String alias) {
+        return this.mapStructApplicationsMapper.typeProductionEntityToTypeProduction(
+                this.typeProductionRepository.findByAlias(alias)
         );
     }
 
