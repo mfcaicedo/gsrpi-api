@@ -1,11 +1,14 @@
 package co.unicauca.gsrpi_api.applications.infrastructure.output.adapter;
 
 import co.unicauca.gsrpi_api.applications.application.port.output.ApplicationManagementOutPort;
+import co.unicauca.gsrpi_api.applications.domain.model.ApplicationRecognized;
 import co.unicauca.gsrpi_api.applications.domain.model.ApplicationTemp;
 import co.unicauca.gsrpi_api.applications.domain.model.Teacher;
+import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.ApplicationRecognizedEntity;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.ApplicationTempEntity;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.TeacherEntity;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.mapper.MapStructApplicationsMapper;
+import co.unicauca.gsrpi_api.applications.infrastructure.output.repository.ApplicationRecognizedRepository;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.repository.ApplicationTempRepository;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.repository.TeacherRepository;
 import org.springframework.stereotype.Service;
@@ -15,13 +18,16 @@ import org.springframework.transaction.annotation.Transactional;
 public class ApplicationManagementAdapter implements ApplicationManagementOutPort {
     private final ApplicationTempRepository applicationTempRepository;
     private final TeacherRepository teacherRepository;
+    private final ApplicationRecognizedRepository applicationRecognizedRepository;
     private final MapStructApplicationsMapper mapStructApplicationsMapper;
 
     public ApplicationManagementAdapter(ApplicationTempRepository applicationTempRepository,
                                         TeacherRepository teacherRepository,
+                                        ApplicationRecognizedRepository applicationRecognizedRepository,
                                         MapStructApplicationsMapper mapStructApplicationsMapper) {
         this.applicationTempRepository = applicationTempRepository;
         this.teacherRepository = teacherRepository;
+        this.applicationRecognizedRepository = applicationRecognizedRepository;
         this.mapStructApplicationsMapper = mapStructApplicationsMapper;
     }
 
@@ -48,7 +54,15 @@ public class ApplicationManagementAdapter implements ApplicationManagementOutPor
     @Override
     @Transactional
     public Teacher getTeacherByPersonId(Long personId) {
-        TeacherEntity teacherEntity = this.teacherRepository.findByPerson_PersonId(personId);
         return this.mapStructApplicationsMapper.teacherEntityToTeacher(this.teacherRepository.findByPerson_PersonId(personId));
     }
+
+    @Override
+    public ApplicationRecognized createApplicationRecognized(ApplicationRecognized applicationRecognized) {
+        return this.mapStructApplicationsMapper.applicationRecognizedEntityToApplicationRecognized(
+                this.applicationRecognizedRepository.save(
+                        this.mapStructApplicationsMapper.applicationRecognizedToApplicationRecognizedEntity(applicationRecognized))
+        );
+    }
+
 }

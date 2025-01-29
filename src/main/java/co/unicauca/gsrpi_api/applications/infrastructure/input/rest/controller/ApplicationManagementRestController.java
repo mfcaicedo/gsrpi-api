@@ -1,7 +1,9 @@
 package co.unicauca.gsrpi_api.applications.infrastructure.input.rest.controller;
 
 import co.unicauca.gsrpi_api.applications.application.port.input.ApplicationManagementPort;
+import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRecognizedRequest;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationTempRequest;
+import co.unicauca.gsrpi_api.applications.domain.model.dto.response.ApplicationRecognizedResponse;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.response.ApplicationTempResponse;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.response.TeacherResponse;
 import org.springframework.http.HttpStatus;
@@ -36,6 +38,12 @@ public class ApplicationManagementRestController {
         System.out.println("person id: " + personId);
         return ResponseEntity.status(HttpStatus.OK).body(
                 this.applicationManagementPort.getTeacherByPersonId(personId)
+        );
+    }
+    @PostMapping("crear-solicitud-reconocida")
+    public ResponseEntity<ApplicationRecognizedResponse> createRecognizedApplication(@RequestBody ApplicationRecognizedRequest applicationRecognizedRequest) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+                this.applicationManagementPort.createApplicationRecognized(applicationRecognizedRequest)
         );
     }
 }

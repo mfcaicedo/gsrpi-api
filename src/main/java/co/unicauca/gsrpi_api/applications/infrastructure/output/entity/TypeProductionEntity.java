@@ -16,7 +16,7 @@ public class TypeProductionEntity {
     @Column(name = "estructura_json", columnDefinition = "jsonb", nullable = false)
     @Type(JsonBinaryType.class)
     private String jsonStructure;
-    @Column(name = "calalogos_ids", columnDefinition = "json", nullable = true)
+    @Column(name = "calalogos_ids", columnDefinition = "jsonb", nullable = true)
     @Type(JsonBinaryType.class)
     private String catalogsIds;
 

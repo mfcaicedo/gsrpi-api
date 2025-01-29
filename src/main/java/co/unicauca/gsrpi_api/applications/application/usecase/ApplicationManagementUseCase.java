@@ -3,7 +3,10 @@ package co.unicauca.gsrpi_api.applications.application.usecase;
 import co.unicauca.gsrpi_api.applications.application.mapper.ApplicationsMapper;
 import co.unicauca.gsrpi_api.applications.application.port.input.ApplicationManagementPort;
 import co.unicauca.gsrpi_api.applications.application.port.output.ApplicationManagementOutPort;
+import co.unicauca.gsrpi_api.applications.domain.model.ApplicationRecognized;
+import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRecognizedRequest;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationTempRequest;
+import co.unicauca.gsrpi_api.applications.domain.model.dto.response.ApplicationRecognizedResponse;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.response.ApplicationTempResponse;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.response.TeacherResponse;
 
@@ -36,5 +39,13 @@ public class ApplicationManagementUseCase implements ApplicationManagementPort {
     @Override
     public TeacherResponse getTeacherByPersonId(Long personId) {
         return this.applicationsMapper.teacherToTeacherResponse(this.applicationManagementOutPort.getTeacherByPersonId(personId));
+    }
+
+    @Override
+    public ApplicationRecognizedResponse createApplicationRecognized(ApplicationRecognizedRequest applicationRecognizedRequest) {
+        return this.applicationsMapper.ApplicationRecognizedToApplicationRecognizedResponse(
+                this.applicationManagementOutPort.createApplicationRecognized(
+                        this.applicationsMapper.applicationRecognizedRequestToApplicationRecognized(applicationRecognizedRequest))
+        );
     }
 }

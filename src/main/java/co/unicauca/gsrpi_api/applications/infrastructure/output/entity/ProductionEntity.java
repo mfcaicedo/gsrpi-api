@@ -27,7 +27,7 @@ public class ProductionEntity {
     @Type(JsonBinaryType.class)
     private String dataJson;
     //Relacion con tabla transversal catalogos (se deja tipo string para guardar el json)
-    @Column(name = "mecanismos_publicacion_cat_id",columnDefinition = "JSON", nullable = false)
+    @Column(name = "mecanismos_publicacion_cat_id",columnDefinition = "JSONB", nullable = false)
     @Type(JsonBinaryType.class)
     private String publicationMechanism;
     //Relacion one to one con tipo_produccion

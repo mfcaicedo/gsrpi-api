@@ -1,34 +1,20 @@
-package co.unicauca.gsrpi_api.applications.infrastructure.output.entity;
-
-import jakarta.persistence.*;
+package co.unicauca.gsrpi_api.applications.domain.model;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "solicitud_reconocida")
-public class ApplicationRecognizedEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "solicitud_reconocida_id")
+public class ApplicationRecognized {
     private Long applicationRecognizedId;
-    @Column(name = "titulo_trabajo", columnDefinition = "TEXT", nullable = false)
     private String title;
-    @Column(name = "nombre_resolucion", columnDefinition = "TEXT", nullable = true)
     private String resolutionName;
-    @Column(name = "fecha", columnDefinition = "TIMESTAMP", nullable = false)
     private LocalDateTime date;
-    @Column(name = "autores", columnDefinition = "TEXT", nullable = false)
     private String authors;
-
     //Relacion many to one con docente
-    @ManyToOne
-    @JoinColumn(name = "docente_id", nullable = false)
-    private TeacherEntity teacher;
+    private Teacher teacher;
 
-    public ApplicationRecognizedEntity() {
+    public ApplicationRecognized() {
     }
 
-    public ApplicationRecognizedEntity(Long applicationRecognizedId, String title, String resolutionName, LocalDateTime date, String authors, TeacherEntity teacher) {
+    public ApplicationRecognized(Long applicationRecognizedId, String title, String resolutionName, LocalDateTime date, String authors, Teacher teacher) {
         this.applicationRecognizedId = applicationRecognizedId;
         this.title = title;
         this.resolutionName = resolutionName;
@@ -77,11 +63,11 @@ public class ApplicationRecognizedEntity {
         this.authors = authors;
     }
 
-    public TeacherEntity getTeacher() {
+    public Teacher getTeacher() {
         return teacher;
     }
 
-    public void setTeacher(TeacherEntity teacher) {
+    public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
 }
