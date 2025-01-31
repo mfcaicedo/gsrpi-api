@@ -5,11 +5,9 @@ import co.unicauca.gsrpi_api.applications.application.port.input.ApplicationMana
 import co.unicauca.gsrpi_api.applications.application.port.output.ApplicationManagementOutPort;
 import co.unicauca.gsrpi_api.applications.domain.model.ApplicationRecognized;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRecognizedRequest;
+import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRequestCreate;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationTempRequest;
-import co.unicauca.gsrpi_api.applications.domain.model.dto.response.ApplicationRecognizedResponse;
-import co.unicauca.gsrpi_api.applications.domain.model.dto.response.ApplicationTempResponse;
-import co.unicauca.gsrpi_api.applications.domain.model.dto.response.TeacherResponse;
-import co.unicauca.gsrpi_api.applications.domain.model.dto.response.TypeProductionResponse;
+import co.unicauca.gsrpi_api.applications.domain.model.dto.response.*;
 
 public class ApplicationManagementUseCase implements ApplicationManagementPort {
     private final ApplicationManagementOutPort applicationManagementOutPort;
@@ -61,6 +59,13 @@ public class ApplicationManagementUseCase implements ApplicationManagementPort {
     public TypeProductionResponse getTypeProductionByAlias(String alias) {
         return this.applicationsMapper.typeProductionToTypeProductionResponse(
                 this.applicationManagementOutPort.getTypeProductionByAlias(alias)
+        );
+    }
+
+    @Override
+    public ApplicationResponseCreate createApplication(ApplicationRequestCreate applicationRequestCreate) {
+        return this.applicationsMapper.applicationToApplicationResponseCreate(
+                this.applicationManagementOutPort.createApplication(applicationRequestCreate)
         );
     }
 }

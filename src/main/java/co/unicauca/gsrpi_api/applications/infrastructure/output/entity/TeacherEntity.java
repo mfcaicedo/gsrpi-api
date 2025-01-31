@@ -3,6 +3,8 @@ package co.unicauca.gsrpi_api.applications.infrastructure.output.entity;
 import co.unicauca.gsrpi_api.user_management.infrastructure.output.entity.PersonEntity;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "docente")
 public class TeacherEntity {
@@ -22,6 +24,10 @@ public class TeacherEntity {
     @JoinColumn(name = "persona_id", nullable = false)
     private PersonEntity person;
 
+    //Relacion one to many con docente_solicitud (SI falla se debe cambiar )
+    @OneToMany(mappedBy = "teacher", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    private List<TeacherApplicationEntity> teacherApplications;
+
     public TeacherEntity() {
     }
 
@@ -31,6 +37,15 @@ public class TeacherEntity {
         this.typeOfLinkage = typeOfLinkage;
         this.departmentId = departmentId;
         this.person = person;
+    }
+
+    public TeacherEntity(Long teacherId, String state, String typeOfLinkage, long departmentId, PersonEntity person, List<TeacherApplicationEntity> teacherApplications) {
+        this.teacherId = teacherId;
+        this.state = state;
+        this.typeOfLinkage = typeOfLinkage;
+        this.departmentId = departmentId;
+        this.person = person;
+        this.teacherApplications = teacherApplications;
     }
 
     public Long getTeacherId() {
@@ -71,5 +86,13 @@ public class TeacherEntity {
 
     public void setPerson(PersonEntity person) {
         this.person = person;
+    }
+
+    public List<TeacherApplicationEntity> getTeacherApplications() {
+        return teacherApplications;
+    }
+
+    public void setTeacherApplications(List<TeacherApplicationEntity> teacherApplications) {
+        this.teacherApplications = teacherApplications;
     }
 }

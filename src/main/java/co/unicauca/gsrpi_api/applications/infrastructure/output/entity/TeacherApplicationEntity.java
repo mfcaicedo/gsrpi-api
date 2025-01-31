@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "docente_solicitud")
-public class TeacherApplication {
+public class TeacherApplicationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "docente_solicitud_id")
@@ -20,10 +20,10 @@ public class TeacherApplication {
     @JoinColumn(name = "solicitud_id", nullable = false)
     private ApplicationEntity application;
 
-    public TeacherApplication() {
+    public TeacherApplicationEntity() {
     }
 
-    public TeacherApplication(Long teacherApplicationId, String typeOfRequestingTeacher, TeacherEntity teacher, ApplicationEntity application) {
+    public TeacherApplicationEntity(Long teacherApplicationId, String typeOfRequestingTeacher, TeacherEntity teacher, ApplicationEntity application) {
         this.teacherApplicationId = teacherApplicationId;
         this.typeOfRequestingTeacher = typeOfRequestingTeacher;
         this.teacher = teacher;

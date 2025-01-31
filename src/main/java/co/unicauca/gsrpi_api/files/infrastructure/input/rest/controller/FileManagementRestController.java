@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("gsrpi-api/v1")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class FileManagementRestController {
     private final FileManagementPort fileManagementPort;
 

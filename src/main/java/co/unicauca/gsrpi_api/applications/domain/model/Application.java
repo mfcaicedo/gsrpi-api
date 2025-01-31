@@ -1,65 +1,35 @@
-package co.unicauca.gsrpi_api.applications.infrastructure.output.entity;
+package co.unicauca.gsrpi_api.applications.domain.model;
 
+import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.ProductionEntity;
+import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.StatusApplicationEntity;
+import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.TeacherApplicationEntity;
 import co.unicauca.gsrpi_api.system_configuration.infrastructure.output.entity.DepartmentEntity;
-import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
-@Table(name = "solicitud")
-public class ApplicationEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "solicitud_id")
+public class Application {
     private Long applicationId;
-    @Column(name = "descripcion", columnDefinition = "TEXT", nullable = true)
     private String description;
-    @Column(name = "numero_autores", columnDefinition = "SMALLINT", nullable = false)
     private Integer numberOfAuthors;
-    @Column(name = "terminios_condiciones", columnDefinition = "BOOLEAN", nullable = false)
     private Boolean termsAndConditions;
     //Relacion debil con la tabla catalogos que es transversal
-    @Column(name = "tipo_solicitud_cat_id", nullable = false)
     private Long applicationTypeCatId;
-    @Column(name = "fecha_creacion", columnDefinition = "TIMESTAMP", nullable = false)
     private LocalDateTime createAt;
-    @Column(name = "fecha_actualizacion", columnDefinition = "TIMESTAMP", nullable = true)
     private LocalDateTime updateAt;
     //Relacion many to one con departamento
-    @ManyToOne
-    @JoinColumn(name = "departamento_id", nullable = false)
     private DepartmentEntity department;
-
-    //Relacion one to one con solicitud
-    @OneToOne(mappedBy = "application", cascade = {CascadeType.ALL})
+    //Relacion one to one con produccion
     private ProductionEntity production;
-
     //Relacion many to one con estado_solicitud
-    @ManyToOne
-    @JoinColumn(name = "estado_solicitud_id", nullable = false)
     private StatusApplicationEntity applicationStatus;
     //Relacion one to many con docente_solicitud (SI falla se debe cambiar )
-    @OneToMany(mappedBy = "application", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<TeacherApplicationEntity> teacherApplications;
 
-    public ApplicationEntity() {
+    public Application() {
     }
 
-    public ApplicationEntity(Long applicationId, String description, Integer numberOfAuthors, Boolean termsAndConditions, Long applicationTypeCatId, LocalDateTime createAt, LocalDateTime updateAt, DepartmentEntity department, ProductionEntity production, StatusApplicationEntity applicationStatus) {
-        this.applicationId = applicationId;
-        this.description = description;
-        this.numberOfAuthors = numberOfAuthors;
-        this.termsAndConditions = termsAndConditions;
-        this.applicationTypeCatId = applicationTypeCatId;
-        this.createAt = createAt;
-        this.updateAt = updateAt;
-        this.department = department;
-        this.production = production;
-        this.applicationStatus = applicationStatus;
-    }
-
-    public ApplicationEntity(Long applicationId, String description, Integer numberOfAuthors, Boolean termsAndConditions, Long applicationTypeCatId, LocalDateTime createAt, LocalDateTime updateAt, DepartmentEntity department, ProductionEntity production, StatusApplicationEntity applicationStatus, List<TeacherApplicationEntity> teacherApplications) {
+    public Application(Long applicationId, String description, Integer numberOfAuthors, Boolean termsAndConditions, Long applicationTypeCatId, LocalDateTime createAt, LocalDateTime updateAt, DepartmentEntity department, ProductionEntity production, StatusApplicationEntity applicationStatus, List<TeacherApplicationEntity> teacherApplications) {
         this.applicationId = applicationId;
         this.description = description;
         this.numberOfAuthors = numberOfAuthors;

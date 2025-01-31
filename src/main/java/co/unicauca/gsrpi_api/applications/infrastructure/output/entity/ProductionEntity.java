@@ -4,6 +4,8 @@ import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Type;
 
+import java.util.List;
+
 @Entity
 @Table(name = "produccion")
 public class ProductionEntity {
@@ -27,13 +29,22 @@ public class ProductionEntity {
     @Type(JsonBinaryType.class)
     private String dataJson;
     //Relacion con tabla transversal catalogos (se deja tipo string para guardar el json)
-    @Column(name = "mecanismos_publicacion_cat_id",columnDefinition = "JSONB", nullable = false)
+    @Column(name = "mecanismos_publicacion_cat_id", columnDefinition = "JSONB", nullable = false)
     @Type(JsonBinaryType.class)
     private String publicationMechanism;
     //Relacion one to one con tipo_produccion
     @OneToOne
     @JoinColumn(name = "tipo_produccion_id", nullable = false)
     private TypeProductionEntity productionType;
+
+    //Relacion one to one con solicitud
+    @OneToOne
+    @JoinColumn(name = "solicitud_id", nullable = false)
+    private ApplicationEntity application;
+
+    //Relacion one to many con produccion_archivo
+    @OneToMany(mappedBy = "production", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    private List<ProductionFileEntity> productionFiles;
 
     public ProductionEntity() {
     }
@@ -49,6 +60,35 @@ public class ProductionEntity {
         this.dataJson = dataJson;
         this.publicationMechanism = publicationMechanism;
         this.productionType = productionType;
+    }
+
+    public ProductionEntity(Long productionId, String workTitle, String disciplinaryArea, Integer numberOfPages, Integer startPage, Integer endPage, String observations, String dataJson, String publicationMechanism, TypeProductionEntity productionType, ApplicationEntity application) {
+        this.productionId = productionId;
+        this.workTitle = workTitle;
+        this.disciplinaryArea = disciplinaryArea;
+        this.numberOfPages = numberOfPages;
+        this.startPage = startPage;
+        this.endPage = endPage;
+        this.observations = observations;
+        this.dataJson = dataJson;
+        this.publicationMechanism = publicationMechanism;
+        this.productionType = productionType;
+        this.application = application;
+    }
+
+    public ProductionEntity(Long productionId, String workTitle, String disciplinaryArea, Integer numberOfPages, Integer startPage, Integer endPage, String observations, String dataJson, String publicationMechanism, TypeProductionEntity productionType, ApplicationEntity application, List<ProductionFileEntity> productionFiles) {
+        this.productionId = productionId;
+        this.workTitle = workTitle;
+        this.disciplinaryArea = disciplinaryArea;
+        this.numberOfPages = numberOfPages;
+        this.startPage = startPage;
+        this.endPage = endPage;
+        this.observations = observations;
+        this.dataJson = dataJson;
+        this.publicationMechanism = publicationMechanism;
+        this.productionType = productionType;
+        this.application = application;
+        this.productionFiles = productionFiles;
     }
 
     public Long getProductionId() {
@@ -129,5 +169,21 @@ public class ProductionEntity {
 
     public void setProductionType(TypeProductionEntity productionType) {
         this.productionType = productionType;
+    }
+
+    public ApplicationEntity getApplication() {
+        return application;
+    }
+
+    public void setApplication(ApplicationEntity application) {
+        this.application = application;
+    }
+
+    public List<ProductionFileEntity> getProductionFiles() {
+        return productionFiles;
+    }
+
+    public void setProductionFiles(List<ProductionFileEntity> productionFiles) {
+        this.productionFiles = productionFiles;
     }
 }

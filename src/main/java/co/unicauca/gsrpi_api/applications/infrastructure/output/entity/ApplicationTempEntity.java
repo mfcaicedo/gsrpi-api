@@ -40,7 +40,8 @@ public class ApplicationTempEntity {
     @Column(name = "produccion_json_datos", columnDefinition = "JSONB")
     @Type(JsonBinaryType.class)
     private String productionJsonData;
-    @Column(name = "produccion_mecanismos_pubicacion_cat_id", columnDefinition = "TEXT")
+    @Column(name = "produccion_mecanismos_pubicacion_cat_id", columnDefinition = "JSONB")
+    @Type(JsonBinaryType.class)
     private String productionPublicationMechanisms; //Se guardara un json porque es un checkbox
 
     public ApplicationTempEntity() {
