@@ -7,6 +7,7 @@ import co.unicauca.gsrpi_api.auth.domain.model.dto.response.UserResponse;
 import co.unicauca.gsrpi_api.user_management.domain.model.Person;
 import co.unicauca.gsrpi_api.user_management.domain.model.dto.request.PersonRequest;
 import co.unicauca.gsrpi_api.user_management.domain.model.dto.response.PersonResponse;
+import co.unicauca.gsrpi_api.user_management.domain.model.dto.response.PersonResponseGetByUserId;
 import org.mapstruct.Mapper;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface UserManagementMapper {
     RoleResponse roleToRoleResponse(Role role);
     List<RoleResponse> rolesToRolesResponse(List<Role> roles);
     UserResponse userToUserResponse(User user);
+    PersonResponseGetByUserId personToPersonResponseGetByUserId(Person person);
+
 }

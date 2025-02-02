@@ -24,7 +24,7 @@ public class TeacherEntity {
     @JoinColumn(name = "persona_id", nullable = false)
     private PersonEntity person;
 
-    //Relacion one to many con docente_solicitud (SI falla se debe cambiar )
+    //Relacion one to many con docente_solicitud
     @OneToMany(mappedBy = "teacher", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     private List<TeacherApplicationEntity> teacherApplications;
 

@@ -4,4 +4,5 @@ import co.unicauca.gsrpi_api.user_management.infrastructure.output.entity.Person
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
+    PersonEntity findByUser_UserId(long userUserId);
 }

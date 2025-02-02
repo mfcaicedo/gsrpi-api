@@ -66,4 +66,20 @@ public class UserManagementAdapter implements UserManagementOutPort {
                 this.userRepository.findById(userId).orElse(null)
         );
     }
+
+    @Override
+    @Transactional
+    public User getPersonByUid(String uid) {
+        return this.mapStructMapper.userEntityToUser(
+                this.userRepository.findByUid(uid)
+        );
+    }
+
+    @Override
+    @Transactional
+    public Person getPersonByUserId(long userId) {
+        return this.mapStructMapper.personEntityToPerson(
+                this.personRepository.findByUser_UserId(userId)
+        );
+    }
 }

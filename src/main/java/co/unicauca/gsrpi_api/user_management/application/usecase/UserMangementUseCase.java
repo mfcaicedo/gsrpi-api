@@ -7,6 +7,7 @@ import co.unicauca.gsrpi_api.user_management.application.output.UserManagementOu
 import co.unicauca.gsrpi_api.user_management.domain.model.Person;
 import co.unicauca.gsrpi_api.user_management.domain.model.dto.request.PersonRequest;
 import co.unicauca.gsrpi_api.user_management.domain.model.dto.response.PersonResponse;
+import co.unicauca.gsrpi_api.user_management.domain.model.dto.response.PersonResponseGetByUserId;
 
 public class UserMangementUseCase implements UserManagementPort {
     private final UserManagementOutPort userManagementOutPort;
@@ -27,5 +28,15 @@ public class UserMangementUseCase implements UserManagementPort {
     @Override
     public UserResponse getUserById(long userId) {
         return this.mapper.userToUserResponse(this.userManagementOutPort.getUserById(userId));
+    }
+
+    @Override
+    public UserResponse getPersonByUid(String uid) {
+        return this.mapper.userToUserResponse(this.userManagementOutPort.getPersonByUid(uid));
+    }
+
+    @Override
+    public PersonResponseGetByUserId getPersonByUserId(long userId) {
+        return this.mapper.personToPersonResponseGetByUserId(this.userManagementOutPort.getPersonByUserId(userId));
     }
 }
