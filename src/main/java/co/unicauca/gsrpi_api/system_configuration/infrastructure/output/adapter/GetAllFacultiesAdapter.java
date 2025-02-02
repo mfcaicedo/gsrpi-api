@@ -25,6 +25,6 @@ public class GetAllFacultiesAdapter implements GetAllFacultiesOutPort {
 
     @Override
     public List<Faculty> getAllFaculties() {
-        return this.mapStructConfigurationMapper.facultyEntityListToFacultyList(this.facultyRepository.findAll(Sort.by(Sort.Direction.ASC, "nombre")));
+        return this.mapStructConfigurationMapper.facultyEntityListToFacultyList(this.facultyRepository.findAll(Sort.by(Sort.Direction.ASC, "name")));
     }
 }

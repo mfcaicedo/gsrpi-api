@@ -45,6 +45,16 @@ public class FacultyEntity {
         this.address = address;
     }
 
+    public FacultyEntity(long facultyId, String name, String location, String phone, String email, String address, String abbreviation) {
+        this.facultyId = facultyId;
+        this.name = name;
+        this.location = location;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.abbreviation = abbreviation;
+    }
+
     public long getFacultyId() {
         return facultyId;
     }

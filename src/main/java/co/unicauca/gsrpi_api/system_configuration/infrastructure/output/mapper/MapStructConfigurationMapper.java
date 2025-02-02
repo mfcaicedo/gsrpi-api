@@ -15,6 +15,8 @@ public interface MapStructConfigurationMapper {
 
     Configuration configurationEntityToConfiguration(ConfigurationEntity configurationEntity);
 
+    Faculty facultyEntityToFaculty(FacultyEntity facultyEntity);
+
     List<Faculty> facultyEntityListToFacultyList(List<FacultyEntity> facultyEntityList);
 
     ConfigurationEntity configurationToConfigurationEntity(Configuration configuration);
