@@ -10,6 +10,7 @@ import org.mapstruct.Mapper;
 public interface ApplicationsMapper {
     ApplicationTemp applicationTempRequestToApplicationTemp(ApplicationTempRequest applicationTempRequest);
     ApplicationTempResponse applicationTempToApplicationTempResponse(ApplicationTemp applicationTemp);
+    ApplicationTempResponseGetByTeacherId applicationTempToApplicationTempResponseGetByTeacherId(ApplicationTemp applicationTemp);
     TeacherResponse teacherToTeacherResponse(Teacher teacher);
     ApplicationRecognizedResponse ApplicationRecognizedToApplicationRecognizedResponse(ApplicationRecognized applicationRecognized);
     ApplicationRecognized applicationRecognizedRequestToApplicationRecognized(ApplicationRecognizedRequest applicationRecognizedRequest);

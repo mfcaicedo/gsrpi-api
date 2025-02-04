@@ -3,6 +3,7 @@ package co.unicauca.gsrpi_api.applications.infrastructure.output.adapter;
 import co.unicauca.gsrpi_api.applications.application.port.output.ApplicationManagementOutPort;
 import co.unicauca.gsrpi_api.applications.domain.model.*;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRequestCreate;
+import co.unicauca.gsrpi_api.applications.domain.model.dto.response.ApplicationTempResponse;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.*;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.mapper.MapStructApplicationsMapper;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.repository.*;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ApplicationManagementAdapter implements ApplicationManagementOutPort {
@@ -54,11 +56,62 @@ public class ApplicationManagementAdapter implements ApplicationManagementOutPor
     @Override
     public ApplicationTemp updateApplicationTemp(ApplicationTemp applicationTemp) {
         //Todo: Veririfco si el id de la solicitud temporal existe
+        System.out.println(applicationTemp);
         if (this.applicationTempRepository.existsById(applicationTemp.getApplicationTempId())) {
+            //Consulto la solicitud temporal y solo los valores que vengan diferentes de null de aplicationTemp
+            //los actualizo
+            ApplicationTempEntity applicationTempEntity = this.applicationTempRepository.findById(applicationTemp.getApplicationTempId()).orElse(null);
+            if (applicationTempEntity != null) {
+                if (applicationTemp.getApplicationTypeCatId() != null) {
+                    applicationTempEntity.setApplicationTypeCatId(applicationTemp.getApplicationTypeCatId());
+                }
+                if (applicationTemp.getDepartmentId() != null) {
+                    applicationTempEntity.setDepartmentId(applicationTemp.getDepartmentId());
+                }
+                if (applicationTemp.getDescription() != null) {
+                    applicationTempEntity.setDescription(applicationTemp.getDescription());
+                }
+                if (applicationTemp.getNumberOfAuthors() != 0) {
+                    applicationTempEntity.setNumberOfAuthors(applicationTemp.getNumberOfAuthors());
+                }
+                if (applicationTemp.getProductionDisciplinaryArea() != null) {
+                    applicationTempEntity.setProductionDisciplinaryArea(applicationTemp.getProductionDisciplinaryArea());
+                }
+                if (applicationTemp.getProductionEndPage() != 0) {
+                    applicationTempEntity.setProductionEndPage(applicationTemp.getProductionEndPage());
+                }
+                if (applicationTemp.getProductionJsonData() != null) {
+                    applicationTempEntity.setProductionJsonData(applicationTemp.getProductionJsonData());
+                }
+                if (applicationTemp.getProductionObservations() != null) {
+                    applicationTempEntity.setProductionObservations(applicationTemp.getProductionObservations());
+                }
+                if (applicationTemp.getProductionPublicationMechanisms() != null) {
+                    applicationTempEntity.setProductionPublicationMechanisms(applicationTemp.getProductionPublicationMechanisms());
+                }
+                if (applicationTemp.getProductionStartPage() != 0) {
+                    applicationTempEntity.setProductionStartPage(applicationTemp.getProductionStartPage());
+                }
+                if (applicationTemp.getProductionTitle() != null) {
+                    applicationTempEntity.setProductionTitle(applicationTemp.getProductionTitle());
+                }
+                if (applicationTemp.isTermsAndConditions()) {
+                    applicationTempEntity.setTermsAndConditions(applicationTemp.isTermsAndConditions());
+                }
+                if (applicationTemp.getTeacherId() != null) {
+                    applicationTempEntity.setTeacherId(applicationTemp.getTeacherId());
+                }
+                if (applicationTemp.getProductionTypeId() != null) {
+                    applicationTempEntity.setProductionTypeId(applicationTemp.getProductionTypeId());
+                }
+                if (applicationTemp.getProductionNumberOfPages() != 0) {
+                    applicationTempEntity.setProductionNumberOfPages(applicationTemp.getProductionNumberOfPages());
+                }
+
+            }
+
             return this.mapStructApplicationsMapper.applicationTempEntityToApplicationTemp(
-                    this.applicationTempRepository.save(
-                            this.mapStructApplicationsMapper.applicationTempToApplicationTempEntity(applicationTemp))
-            );
+                    this.applicationTempRepository.save(Objects.requireNonNull(applicationTempEntity)));
         }
         return null;
     }
@@ -172,6 +225,13 @@ public class ApplicationManagementAdapter implements ApplicationManagementOutPor
         //TODO: 7. Guardar la solicitud
         return this.mapStructApplicationsMapper.applicationEntityToApplication(
                 this.applicationRepository.save(applicationEntity)
+        );
+    }
+
+    @Override
+    public ApplicationTemp getApplicationTempByTeacherId(Long teacherId) {
+        return this.mapStructApplicationsMapper.applicationTempEntityToApplicationTemp(
+                this.applicationTempRepository.findByTeacherId(teacherId)
         );
     }
 

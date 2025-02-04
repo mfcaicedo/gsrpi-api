@@ -68,4 +68,11 @@ public class ApplicationManagementUseCase implements ApplicationManagementPort {
                 this.applicationManagementOutPort.createApplication(applicationRequestCreate)
         );
     }
+
+    @Override
+    public ApplicationTempResponseGetByTeacherId getApplicationTempByTeacherId(Long teacherId) {
+        return this.applicationsMapper.applicationTempToApplicationTempResponseGetByTeacherId(
+                this.applicationManagementOutPort.getApplicationTempByTeacherId(teacherId)
+        );
+    }
 }

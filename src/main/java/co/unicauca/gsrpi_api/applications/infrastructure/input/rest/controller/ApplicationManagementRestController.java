@@ -4,10 +4,7 @@ import co.unicauca.gsrpi_api.applications.application.port.input.ApplicationMana
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRecognizedRequest;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRequestCreate;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationTempRequest;
-import co.unicauca.gsrpi_api.applications.domain.model.dto.response.ApplicationRecognizedResponse;
-import co.unicauca.gsrpi_api.applications.domain.model.dto.response.ApplicationResponseCreate;
-import co.unicauca.gsrpi_api.applications.domain.model.dto.response.ApplicationTempResponse;
-import co.unicauca.gsrpi_api.applications.domain.model.dto.response.TeacherResponse;
+import co.unicauca.gsrpi_api.applications.domain.model.dto.response.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,14 +28,21 @@ public class ApplicationManagementRestController {
 
     @PatchMapping("actualizar-solicitud-temporal")
     public ResponseEntity<ApplicationTempResponse> updateTemporaryApplication(@RequestBody ApplicationTempRequest applicationTempRequest) {
+        System.out.println(applicationTempRequest);
         return ResponseEntity.status(HttpStatus.OK).body(
                 this.applicationManagementPort.updateApplicationTemp(applicationTempRequest)
         );
     }
 
+    @GetMapping("obtener-solicitud-temporal-por-docente-id/{teacherId}")
+    public ResponseEntity<ApplicationTempResponseGetByTeacherId> getTeacherById(@PathVariable Long teacherId) {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                this.applicationManagementPort.getApplicationTempByTeacherId(teacherId)
+        );
+    }
+
     @GetMapping("obtener-docente-por-id-persona/{personId}")
     public ResponseEntity<TeacherResponse> getTeacherByPersonId(@PathVariable Long personId) {
-        System.out.println("person id: " + personId);
         return ResponseEntity.status(HttpStatus.OK).body(
                 this.applicationManagementPort.getTeacherByPersonId(personId)
         );

@@ -13,5 +13,6 @@ public interface ApplicationManagementPort {
     TypeProductionResponse getTypeProductionById(Long typeProductionId);
     TypeProductionResponse getTypeProductionByAlias(String alias);
     ApplicationResponseCreate createApplication(ApplicationRequestCreate applicationRequestCreate);
+    ApplicationTempResponseGetByTeacherId getApplicationTempByTeacherId(Long teacherId);
 
 }

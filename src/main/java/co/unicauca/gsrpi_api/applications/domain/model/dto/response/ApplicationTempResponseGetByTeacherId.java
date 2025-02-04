@@ -1,11 +1,6 @@
-package co.unicauca.gsrpi_api.applications.domain.model;
+package co.unicauca.gsrpi_api.applications.domain.model.dto.response;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class ApplicationTemp {
+public class ApplicationTempResponseGetByTeacherId {
     private Long applicationTempId;
     private Long teacherId;
     private String description;
@@ -23,10 +18,10 @@ public class ApplicationTemp {
     private String productionJsonData;
     private String productionPublicationMechanisms;
 
-    public ApplicationTemp() {
+    public ApplicationTempResponseGetByTeacherId() {
     }
 
-    public ApplicationTemp(Long applicationTempId, Long teacherId, String description, int numberOfAuthors, boolean termsAndConditions, Long departmentId, Long applicationTypeCatId, String productionTitle, String productionDisciplinaryArea, int productionNumberOfPages, int productionStartPage, int productionEndPage, String productionObservations, Long productionTypeId, String productionJsonData, String productionPublicationMechanisms) {
+    public ApplicationTempResponseGetByTeacherId(Long applicationTempId, Long teacherId, String description, int numberOfAuthors, boolean termsAndConditions, Long departmentId, Long applicationTypeCatId, String productionTitle, String productionDisciplinaryArea, int productionNumberOfPages, int productionStartPage, int productionEndPage, String productionObservations, Long productionTypeId, String productionJsonData, String productionPublicationMechanisms) {
         this.applicationTempId = applicationTempId;
         this.teacherId = teacherId;
         this.description = description;

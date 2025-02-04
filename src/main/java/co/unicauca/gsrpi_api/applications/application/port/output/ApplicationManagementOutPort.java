@@ -2,6 +2,7 @@ package co.unicauca.gsrpi_api.applications.application.port.output;
 
 import co.unicauca.gsrpi_api.applications.domain.model.*;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRequestCreate;
+import co.unicauca.gsrpi_api.applications.domain.model.dto.response.ApplicationTempResponse;
 
 public interface ApplicationManagementOutPort {
     ApplicationTemp createApplicationTemp(ApplicationTemp applicationTemp);
@@ -11,4 +12,5 @@ public interface ApplicationManagementOutPort {
     TypeProduction getTypeProductionById(Long typeProductionId);
     TypeProduction getTypeProductionByAlias(String alias);
     Application createApplication(ApplicationRequestCreate application);
+    ApplicationTemp getApplicationTempByTeacherId(Long teacherId);
 }
