@@ -2,6 +2,7 @@ package co.unicauca.gsrpi_api.applications.infrastructure.input.rest.controller;
 
 import co.unicauca.gsrpi_api.applications.application.port.input.ApplicationManagementPort;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRecognizedRequest;
+import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRecognizedRequestUpdate;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRequestCreate;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationTempRequest;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.response.*;
@@ -28,7 +29,6 @@ public class ApplicationManagementRestController {
 
     @PatchMapping("actualizar-solicitud-temporal")
     public ResponseEntity<ApplicationTempResponse> updateTemporaryApplication(@RequestBody ApplicationTempRequest applicationTempRequest) {
-        System.out.println(applicationTempRequest);
         return ResponseEntity.status(HttpStatus.OK).body(
                 this.applicationManagementPort.updateApplicationTemp(applicationTempRequest)
         );
@@ -54,16 +54,28 @@ public class ApplicationManagementRestController {
                 this.applicationManagementPort.createApplicationRecognized(applicationRecognizedRequest)
         );
     }
+    @PatchMapping("actualizar-solicitud-reconocida")
+    public ResponseEntity<ApplicationRecognizedResponse> updateRecognizedApplication(@RequestBody ApplicationRecognizedRequestUpdate applicationRecognizedRequest) {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                this.applicationManagementPort.updateApplicationRecognized(applicationRecognizedRequest)
+        );
+    }
+    @GetMapping("obtener-solicitud-reconocida-por-solicitud-id/{solicitudId}")
+    public ResponseEntity<ApplicationRecognizedResponseGetByApplicationId> getRecognizedApplicationByTeacherId(@PathVariable Long solicitudId) {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                this.applicationManagementPort.getApplicationRecognizedByApplicationId(solicitudId)
+        );
+    }
 
     @GetMapping("obtener-tipo-produccion-por-id/{typeProductionId}")
-    public ResponseEntity<?> getTypeProductionById(@PathVariable Long typeProductionId) {
+    public ResponseEntity<TypeProductionResponse> getTypeProductionById(@PathVariable Long typeProductionId) {
         return ResponseEntity.status(HttpStatus.OK).body(
                 this.applicationManagementPort.getTypeProductionById(typeProductionId)
         );
     }
 
     @GetMapping("obtener-tipo-produccion-por-alias/{alias}")
-    public ResponseEntity<?> getTypeProductionByAlias(@PathVariable String alias) {
+    public ResponseEntity<TypeProductionResponse> getTypeProductionByAlias(@PathVariable String alias) {
         return ResponseEntity.status(HttpStatus.OK).body(
                 this.applicationManagementPort.getTypeProductionByAlias(alias)
         );

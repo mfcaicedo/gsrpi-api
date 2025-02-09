@@ -19,6 +19,9 @@ public class ApplicationRecognizedEntity {
     private LocalDateTime date;
     @Column(name = "autores", columnDefinition = "TEXT", nullable = false)
     private String authors;
+    //Relacion debil con solicitud que representa la solicitud relacionada
+    @Column(name = "solicitud_id", nullable = false)
+    private Long applicationId;
 
     //Relacion many to one con docente
     @ManyToOne
@@ -28,12 +31,13 @@ public class ApplicationRecognizedEntity {
     public ApplicationRecognizedEntity() {
     }
 
-    public ApplicationRecognizedEntity(Long applicationRecognizedId, String title, String resolutionName, LocalDateTime date, String authors, TeacherEntity teacher) {
+    public ApplicationRecognizedEntity(Long applicationRecognizedId, String title, String resolutionName, LocalDateTime date, String authors, Long applicationId, TeacherEntity teacher) {
         this.applicationRecognizedId = applicationRecognizedId;
         this.title = title;
         this.resolutionName = resolutionName;
         this.date = date;
         this.authors = authors;
+        this.applicationId = applicationId;
         this.teacher = teacher;
     }
 
@@ -75,6 +79,14 @@ public class ApplicationRecognizedEntity {
 
     public void setAuthors(String authors) {
         this.authors = authors;
+    }
+
+    public Long getApplicationId() {
+        return applicationId;
+    }
+
+    public void setApplicationId(Long applicationId) {
+        this.applicationId = applicationId;
     }
 
     public TeacherEntity getTeacher() {

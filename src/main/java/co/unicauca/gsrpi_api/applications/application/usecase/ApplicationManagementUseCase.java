@@ -5,6 +5,7 @@ import co.unicauca.gsrpi_api.applications.application.port.input.ApplicationMana
 import co.unicauca.gsrpi_api.applications.application.port.output.ApplicationManagementOutPort;
 import co.unicauca.gsrpi_api.applications.domain.model.ApplicationRecognized;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRecognizedRequest;
+import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRecognizedRequestUpdate;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRequestCreate;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationTempRequest;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.response.*;
@@ -45,6 +46,21 @@ public class ApplicationManagementUseCase implements ApplicationManagementPort {
         return this.applicationsMapper.ApplicationRecognizedToApplicationRecognizedResponse(
                 this.applicationManagementOutPort.createApplicationRecognized(
                         this.applicationsMapper.applicationRecognizedRequestToApplicationRecognized(applicationRecognizedRequest))
+        );
+    }
+
+    @Override
+    public ApplicationRecognizedResponse updateApplicationRecognized(ApplicationRecognizedRequestUpdate applicationRecognizedRequest) {
+        return this.applicationsMapper.ApplicationRecognizedToApplicationRecognizedResponse(
+                this.applicationManagementOutPort.updateApplicationRecognized(
+                        this.applicationsMapper.applicationRecognizedRequestUpdateToApplicationRecognized(applicationRecognizedRequest))
+        );
+    }
+
+    @Override
+    public ApplicationRecognizedResponseGetByApplicationId getApplicationRecognizedByApplicationId(Long applicationId) {
+        return this.applicationsMapper.applicationRecognizedToApplicationRecognizedResponseGetByApplicationId(
+                this.applicationManagementOutPort.getApplicationRecognizedByApplicationId(applicationId)
         );
     }
 

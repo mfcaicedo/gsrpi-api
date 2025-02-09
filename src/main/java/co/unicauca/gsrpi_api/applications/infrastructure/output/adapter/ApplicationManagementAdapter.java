@@ -56,7 +56,6 @@ public class ApplicationManagementAdapter implements ApplicationManagementOutPor
     @Override
     public ApplicationTemp updateApplicationTemp(ApplicationTemp applicationTemp) {
         //Todo: Veririfco si el id de la solicitud temporal existe
-        System.out.println(applicationTemp);
         if (this.applicationTempRepository.existsById(applicationTemp.getApplicationTempId())) {
             //Consulto la solicitud temporal y solo los valores que vengan diferentes de null de aplicationTemp
             //los actualizo
@@ -127,6 +126,21 @@ public class ApplicationManagementAdapter implements ApplicationManagementOutPor
         return this.mapStructApplicationsMapper.applicationRecognizedEntityToApplicationRecognized(
                 this.applicationRecognizedRepository.save(
                         this.mapStructApplicationsMapper.applicationRecognizedToApplicationRecognizedEntity(applicationRecognized))
+        );
+    }
+
+    @Override
+    public ApplicationRecognized updateApplicationRecognized(ApplicationRecognized applicationRecognized) {
+        return this.mapStructApplicationsMapper.applicationRecognizedEntityToApplicationRecognized(
+                this.applicationRecognizedRepository.save(
+                        this.mapStructApplicationsMapper.applicationRecognizedToApplicationRecognizedEntity(applicationRecognized))
+        );
+    }
+
+    @Override
+    public ApplicationRecognized getApplicationRecognizedByApplicationId(Long applicationId) {
+        return this.mapStructApplicationsMapper.applicationRecognizedEntityToApplicationRecognized(
+                this.applicationRecognizedRepository.findByApplicationId(applicationId)
         );
     }
 

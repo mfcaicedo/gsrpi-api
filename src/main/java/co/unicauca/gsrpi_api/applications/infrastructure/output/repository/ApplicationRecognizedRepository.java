@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ApplicationRecognizedRepository extends JpaRepository<ApplicationRecognizedEntity, Long> {
+    ApplicationRecognizedEntity findByApplicationId(Long applicationId);
 }

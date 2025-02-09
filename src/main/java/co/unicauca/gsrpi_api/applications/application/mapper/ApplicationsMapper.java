@@ -2,6 +2,7 @@ package co.unicauca.gsrpi_api.applications.application.mapper;
 
 import co.unicauca.gsrpi_api.applications.domain.model.*;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRecognizedRequest;
+import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRecognizedRequestUpdate;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationTempRequest;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.response.*;
 import org.mapstruct.Mapper;
@@ -14,6 +15,8 @@ public interface ApplicationsMapper {
     TeacherResponse teacherToTeacherResponse(Teacher teacher);
     ApplicationRecognizedResponse ApplicationRecognizedToApplicationRecognizedResponse(ApplicationRecognized applicationRecognized);
     ApplicationRecognized applicationRecognizedRequestToApplicationRecognized(ApplicationRecognizedRequest applicationRecognizedRequest);
+    ApplicationRecognized applicationRecognizedRequestUpdateToApplicationRecognized(ApplicationRecognizedRequestUpdate applicationRecognizedRequestUpdate);
+    ApplicationRecognizedResponseGetByApplicationId applicationRecognizedToApplicationRecognizedResponseGetByApplicationId(ApplicationRecognized applicationRecognized);
     TypeProductionResponse typeProductionToTypeProductionResponse(TypeProduction typeProduction);
     ApplicationResponseCreate applicationToApplicationResponseCreate(Application application);
 }

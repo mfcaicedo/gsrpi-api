@@ -2,7 +2,8 @@ package co.unicauca.gsrpi_api.applications.domain.model.dto.request;
 
 import java.time.LocalDateTime;
 
-public class ApplicationRecognizedRequest {
+public class ApplicationRecognizedRequestUpdate {
+    private Long applicationRecognizedId;
     private String title;
     private String resolutionName;
     private LocalDateTime date;
@@ -11,16 +12,25 @@ public class ApplicationRecognizedRequest {
     //Relacion many to one con docente
     private TeacherRequest teacher;
 
-    public ApplicationRecognizedRequest() {
+    public ApplicationRecognizedRequestUpdate() {
     }
 
-    public ApplicationRecognizedRequest(String title, String resolutionName, LocalDateTime date, String authors, Long applicationId, TeacherRequest teacher) {
+    public ApplicationRecognizedRequestUpdate(Long applicationRecognizedId, String title, String resolutionName, LocalDateTime date, String authors, Long applicationId, TeacherRequest teacher) {
+        this.applicationRecognizedId = applicationRecognizedId;
         this.title = title;
         this.resolutionName = resolutionName;
         this.date = date;
         this.authors = authors;
         this.applicationId = applicationId;
         this.teacher = teacher;
+    }
+
+    public Long getApplicationRecognizedId() {
+        return applicationRecognizedId;
+    }
+
+    public void setApplicationRecognizedId(Long applicationRecognizedId) {
+        this.applicationRecognizedId = applicationRecognizedId;
     }
 
     public String getTitle() {

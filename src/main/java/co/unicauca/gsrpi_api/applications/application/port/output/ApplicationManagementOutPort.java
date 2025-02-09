@@ -6,11 +6,23 @@ import co.unicauca.gsrpi_api.applications.domain.model.dto.response.ApplicationT
 
 public interface ApplicationManagementOutPort {
     ApplicationTemp createApplicationTemp(ApplicationTemp applicationTemp);
+
     ApplicationTemp updateApplicationTemp(ApplicationTemp applicationTemp);
+
     Teacher getTeacherByPersonId(Long personId);
+
     ApplicationRecognized createApplicationRecognized(ApplicationRecognized applicationRecognized);
+
+    ApplicationRecognized updateApplicationRecognized(ApplicationRecognized applicationRecognized);
+
+    ApplicationRecognized getApplicationRecognizedByApplicationId(Long applicationId);
+
     TypeProduction getTypeProductionById(Long typeProductionId);
+
     TypeProduction getTypeProductionByAlias(String alias);
+
     Application createApplication(ApplicationRequestCreate application);
+
     ApplicationTemp getApplicationTempByTeacherId(Long teacherId);
+
 }
