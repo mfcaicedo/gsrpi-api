@@ -32,8 +32,8 @@ public class ProductionEntity {
     @Column(name = "mecanismos_publicacion_cat_id", columnDefinition = "JSONB", nullable = false)
     @Type(JsonBinaryType.class)
     private String publicationMechanism;
-    //Relacion one to one con tipo_produccion
-    @OneToOne
+    //Relacion many to one con tipo_produccion
+    @ManyToOne
     @JoinColumn(name = "tipo_produccion_id", nullable = false)
     private TypeProductionEntity productionType;
 

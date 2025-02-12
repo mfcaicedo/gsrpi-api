@@ -214,6 +214,7 @@ public class ApplicationManagementAdapter implements ApplicationManagementOutPor
         productionEntity.setWorkTitle(applicationTempEntity.getProductionTitle());
         productionEntity.setStartPage(applicationTempEntity.getProductionStartPage());
         productionEntity.setEndPage(applicationTempEntity.getProductionEndPage());
+        productionEntity.setNumberOfPages(applicationTempEntity.getProductionNumberOfPages());
         productionEntity.setPublicationMechanism(applicationTempEntity.getProductionPublicationMechanisms());
 //        productionEntity.setApplication(null); //Revisar si es necesaria esta linea
 
@@ -236,10 +237,22 @@ public class ApplicationManagementAdapter implements ApplicationManagementOutPor
         //Seteo la solicitud en la entidad de produccion
         productionEntity.setApplication(applicationEntity);
 
+
         //TODO: 7. Guardar la solicitud
-        return this.mapStructApplicationsMapper.applicationEntityToApplication(
-                this.applicationRepository.save(applicationEntity)
-        );
+         ApplicationEntity applicationEntitySave = this.applicationRepository.save(applicationEntity);
+
+        //Buscar a la solicitud reconocida por el id de la solicitud temporal y actualizar el id de la solicitud
+        //reconocida con el id de la solicitud creada
+        ApplicationRecognizedEntity applicationRecognizedEntity = this.applicationRecognizedRepository.findByApplicationId(application.getApplicationTempId());
+        if (applicationRecognizedEntity != null) {
+            applicationRecognizedEntity.setApplicationId(applicationEntitySave.getApplicationId());
+            this.applicationRecognizedRepository.save(applicationRecognizedEntity);
+        }
+
+        //Si se guardo la solicitud, se elimina la solicitud temporal
+        this.applicationTempRepository.deleteById(applicationTempEntity.getApplicationTempId());
+
+        return this.mapStructApplicationsMapper.applicationEntityToApplication(applicationEntitySave);
     }
 
     @Override
