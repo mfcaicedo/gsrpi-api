@@ -6,6 +6,8 @@ import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRe
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationTempRequest;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.response.*;
 
+import java.util.List;
+
 public interface ApplicationManagementPort {
 
     ApplicationTempResponse createApplicationTemp(ApplicationTempRequest applicationTempRequest);
@@ -27,5 +29,7 @@ public interface ApplicationManagementPort {
     ApplicationResponseCreate createApplication(ApplicationRequestCreate applicationRequestCreate);
 
     ApplicationTempResponseGetByTeacherId getApplicationTempByTeacherId(Long teacherId);
+
+    List<ApplicationResponseGetAllByTeacherId> getAllApplicationByTeacherId(Long teacherId);
 
 }

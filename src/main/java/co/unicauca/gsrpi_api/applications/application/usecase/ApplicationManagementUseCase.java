@@ -3,12 +3,13 @@ package co.unicauca.gsrpi_api.applications.application.usecase;
 import co.unicauca.gsrpi_api.applications.application.mapper.ApplicationsMapper;
 import co.unicauca.gsrpi_api.applications.application.port.input.ApplicationManagementPort;
 import co.unicauca.gsrpi_api.applications.application.port.output.ApplicationManagementOutPort;
-import co.unicauca.gsrpi_api.applications.domain.model.ApplicationRecognized;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRecognizedRequest;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRecognizedRequestUpdate;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRequestCreate;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationTempRequest;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.response.*;
+
+import java.util.List;
 
 public class ApplicationManagementUseCase implements ApplicationManagementPort {
     private final ApplicationManagementOutPort applicationManagementOutPort;
@@ -89,6 +90,13 @@ public class ApplicationManagementUseCase implements ApplicationManagementPort {
     public ApplicationTempResponseGetByTeacherId getApplicationTempByTeacherId(Long teacherId) {
         return this.applicationsMapper.applicationTempToApplicationTempResponseGetByTeacherId(
                 this.applicationManagementOutPort.getApplicationTempByTeacherId(teacherId)
+        );
+    }
+
+    @Override
+    public List<ApplicationResponseGetAllByTeacherId> getAllApplicationByTeacherId(Long teacherId) {
+        return this.applicationsMapper.applicationListToApplicationResponseGetAllByTeacherId(
+                this.applicationManagementOutPort.getAllApplicationByTeacherId(teacherId)
         );
     }
 }

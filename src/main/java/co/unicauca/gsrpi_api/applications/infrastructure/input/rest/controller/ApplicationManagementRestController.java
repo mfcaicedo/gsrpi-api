@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("gsrpi-api/v1")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -85,6 +87,13 @@ public class ApplicationManagementRestController {
     public ResponseEntity<ApplicationResponseCreate> createApplication(@RequestBody ApplicationRequestCreate applicationRequestCreate) {
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 this.applicationManagementPort.createApplication(applicationRequestCreate)
+        );
+    }
+
+    @GetMapping("obtener-solicitud-por-docente-id/{teacherId}")
+    public ResponseEntity<List<ApplicationResponseGetAllByTeacherId>> getAllApplicationByTeacherId(@PathVariable Long teacherId) {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                this.applicationManagementPort.getAllApplicationByTeacherId(teacherId)
         );
     }
 

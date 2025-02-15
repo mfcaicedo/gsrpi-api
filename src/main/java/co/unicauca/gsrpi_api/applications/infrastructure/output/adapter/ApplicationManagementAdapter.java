@@ -239,7 +239,7 @@ public class ApplicationManagementAdapter implements ApplicationManagementOutPor
 
 
         //TODO: 7. Guardar la solicitud
-         ApplicationEntity applicationEntitySave = this.applicationRepository.save(applicationEntity);
+        ApplicationEntity applicationEntitySave = this.applicationRepository.save(applicationEntity);
 
         //Buscar a la solicitud reconocida por el id de la solicitud temporal y actualizar el id de la solicitud
         //reconocida con el id de la solicitud creada
@@ -259,6 +259,14 @@ public class ApplicationManagementAdapter implements ApplicationManagementOutPor
     public ApplicationTemp getApplicationTempByTeacherId(Long teacherId) {
         return this.mapStructApplicationsMapper.applicationTempEntityToApplicationTemp(
                 this.applicationTempRepository.findByTeacherId(teacherId)
+        );
+    }
+
+    @Override
+    @Transactional
+    public List<Application> getAllApplicationByTeacherId(Long teacherId) {
+        return this.mapStructApplicationsMapper.applicationEntityListToApplicationList(
+                this.applicationRepository.findAllByTeacherApplications_Teacher_TeacherId(teacherId)
         );
     }
 
