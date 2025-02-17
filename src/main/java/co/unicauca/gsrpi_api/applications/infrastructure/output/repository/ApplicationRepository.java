@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface ApplicationRepository extends JpaRepository<ApplicationEntity, Long> {
     List<ApplicationEntity> findAllByTeacherApplications_Teacher_TeacherId(Long teacherId);
+
+    List<ApplicationEntity> findAllByDepartment_Faculty_FacultyId(long departmentFacultyFacultyId);
 }

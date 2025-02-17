@@ -90,7 +90,7 @@ public class ApplicationManagementRestController {
         );
     }
 
-    @GetMapping("obtener-solicitud-por-docente-id/{teacherId}")
+    @GetMapping("obtener-listado-solicitudes-por-docente-id/{teacherId}")
     public ResponseEntity<List<ApplicationResponseGetAllByTeacherId>> getAllApplicationByTeacherId(@PathVariable Long teacherId) {
         return ResponseEntity.status(HttpStatus.OK).body(
                 this.applicationManagementPort.getAllApplicationByTeacherId(teacherId)

@@ -23,7 +23,7 @@ public class Application {
     private ProductionEntity production;
     //Relacion many to one con estado_solicitud
     private StatusApplicationEntity applicationStatus;
-    //Relacion one to many con docente_solicitud (SI falla se debe cambiar )
+    //Relacion one to many con docente_solicitud
     private List<TeacherApplicationEntity> teacherApplications;
 
     public Application() {

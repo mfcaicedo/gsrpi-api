@@ -11,8 +11,8 @@ public class BeanConfigurationApplications {
     @Bean
     public ApplicationManagementUseCase createApplicationManagementUseCase(
             ApplicationManagementOutPort applicationManagementOutPort,
-            ApplicationsMapper mapper
+            ApplicationsMapper applicationsMapper
     ){
-        return new ApplicationManagementUseCase(applicationManagementOutPort, mapper);
+        return new ApplicationManagementUseCase(applicationManagementOutPort, applicationsMapper);
     }
 }
