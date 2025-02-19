@@ -266,7 +266,7 @@ public class ApplicationManagementAdapter implements ApplicationManagementOutPor
     @Transactional
     public List<Application> getAllApplicationByTeacherId(Long teacherId) {
         return this.mapStructApplicationsMapper.applicationEntityListToApplicationList(
-                this.applicationRepository.findAllByTeacherApplications_Teacher_TeacherId(teacherId)
+                this.applicationRepository.findAllByTeacherApplications_Teacher_TeacherIdOrderByCreateAtDesc(teacherId)
         );
     }
 

@@ -23,7 +23,7 @@ public class ReviewApplicationsAdapter implements ReviewApplicationManagementOut
     @Transactional(readOnly = true)
     public List<Application> getAllApplicationsByFacultyId(Long facultyId) {
         return this.mapStructReviewApplicationsMapper.applicationEntityListToApplicationList(
-                this.applicationRepository.findAllByDepartment_Faculty_FacultyId(facultyId)
+                this.applicationRepository.findAllByDepartment_Faculty_FacultyIdOrderByCreateAtAsc(facultyId)
         );
     }
 }
