@@ -28,4 +28,6 @@ public interface ApplicationManagementOutPort {
 
     List<Application> getAllApplicationByTeacherId(Long teacherId);
 
+    Application getApplicationById(Long applicationId);
+
 }

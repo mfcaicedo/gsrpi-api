@@ -8,6 +8,7 @@ import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRe
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRequestCreate;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationTempRequest;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.response.*;
+import co.unicauca.gsrpi_api.applications.domain.model.dto.response.get_application_by_id.ApplicationResponseGetById;
 
 import java.util.List;
 
@@ -97,6 +98,13 @@ public class ApplicationManagementUseCase implements ApplicationManagementPort {
     public List<ApplicationResponseGetAllByTeacherId> getAllApplicationByTeacherId(Long teacherId) {
         return this.applicationsMapper.applicationListToApplicationResponseGetAllByTeacherId(
                 this.applicationManagementOutPort.getAllApplicationByTeacherId(teacherId)
+        );
+    }
+
+    @Override
+    public ApplicationResponseGetById getApplicationById(Long applicationId) {
+        return this.applicationsMapper.applicationToApplicationResponseGetById(
+                this.applicationManagementOutPort.getApplicationById(applicationId)
         );
     }
 }

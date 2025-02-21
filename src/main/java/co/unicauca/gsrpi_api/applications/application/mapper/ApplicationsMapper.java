@@ -5,7 +5,11 @@ import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRe
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRecognizedRequestUpdate;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationTempRequest;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.response.*;
+import co.unicauca.gsrpi_api.applications.domain.model.dto.response.get_application_by_id.*;
+import co.unicauca.gsrpi_api.system_configuration.domain.model.Department;
+import co.unicauca.gsrpi_api.user_management.domain.model.Person;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 
@@ -32,4 +36,16 @@ public interface ApplicationsMapper {
     ApplicationResponseCreate applicationToApplicationResponseCreate(Application application);
 
     List<ApplicationResponseGetAllByTeacherId> applicationListToApplicationResponseGetAllByTeacherId(List<Application> applications);
+
+    DepartmentResponseGetById departmentToDepartmentResponseGetById(Department department);
+
+    PersonResponseGetById personToPersonResponseGetById(Person person);
+    ProductionFileResponseGetById productionFileToProductionFileResponseGetById(ProductionFile productionFile);
+    List<ProductionResponseGetById> productionListToProductionResponseGetById(List<ProductionFile> productionFiles);
+    ProductionResponseGetById productionToProductionResponseGetById(Production production);
+    TeacherApplicationGetById teacherApplicationToTeacherApplicationGetById(TeacherApplication teacherApplication);
+    List<TeacherApplicationGetById> teacherApplicationListToTeacherApplicationGetById(List<TeacherApplication> teacherApplications);
+    TeacherResponseGetById teacherToTeacherResponseGetById(Teacher teacher);
+    TypeProductionResponseGetById typeProductionToTypeProductionResponseGetById(TypeProduction typeProduction);
+    ApplicationResponseGetById applicationToApplicationResponseGetById(Application application);
 }

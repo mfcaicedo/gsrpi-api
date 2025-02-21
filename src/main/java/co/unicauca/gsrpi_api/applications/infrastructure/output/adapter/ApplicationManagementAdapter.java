@@ -270,4 +270,12 @@ public class ApplicationManagementAdapter implements ApplicationManagementOutPor
         );
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public Application getApplicationById(Long applicationId) {
+        return this.mapStructApplicationsMapper.applicationEntityToApplication(
+                this.applicationRepository.findById(applicationId).orElse(null)
+        );
+    }
+
 }

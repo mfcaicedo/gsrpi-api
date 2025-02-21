@@ -43,7 +43,7 @@ public class ProductionEntity {
     private ApplicationEntity application;
 
     //Relacion one to many con produccion_archivo
-    @OneToMany(mappedBy = "production", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "production", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<ProductionFileEntity> productionFiles;
 
     public ProductionEntity() {
