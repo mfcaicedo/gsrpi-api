@@ -2,7 +2,10 @@ package co.unicauca.gsrpi_api.review_applications.infrastructure.input.rest.cont
 
 import co.unicauca.gsrpi_api.applications.domain.model.dto.response.ApplicationResponseGetAllByTeacherId;
 import co.unicauca.gsrpi_api.review_applications.application.port.input.ReviewApplicationsManagementPort;
-import co.unicauca.gsrpi_api.review_applications.domain.model.dto.response.ApplicationResponseGetAllByFacultyId;
+import co.unicauca.gsrpi_api.review_applications.domain.model.ValidationType;
+import co.unicauca.gsrpi_api.review_applications.domain.model.dto.request.ApplicationRequestUpdateStatus;
+import co.unicauca.gsrpi_api.review_applications.domain.model.dto.request.ValidationRequest;
+import co.unicauca.gsrpi_api.review_applications.domain.model.dto.response.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,5 +28,41 @@ public class ReviewApplicationsRestController {
                 this.reviewApplicationsManagementPort.getAllApplicationsByFacultyId(facultyId)
         );
     }
+
+    @PostMapping("guardar-validacion")
+    public ResponseEntity<ValidationResponse> saveValidation(@RequestBody ValidationRequest validationRequest) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+                this.reviewApplicationsManagementPort.saveValidation(validationRequest)
+        );
+    }
+
+    @GetMapping("obtener-listado-validaciones-por-solicitud-id/{applicationId}")
+    public ResponseEntity<List<ValidationResponseGetAllByApplicationId>> getAllValidationsByApplicationId(@PathVariable Long applicationId) {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                this.reviewApplicationsManagementPort.getAllValidationsByApplicationId(applicationId)
+        );
+    }
+
+    @GetMapping("obtener-listado-tipos-validaciones")
+    public ResponseEntity<List<ValidationTypeResponseGetAll>> getAllValidationTypes() {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                this.reviewApplicationsManagementPort.getAllValidationTypes()
+        );
+    }
+
+    @GetMapping("obtener-listado-estados-solicitud")
+    public ResponseEntity<List<StatusApplicationResponseGetAll>> getAllStatusApplications() {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                this.reviewApplicationsManagementPort.getAllStatusApplications()
+        );
+    }
+
+    @PutMapping("actualizar-estado-solicitud")
+    public ResponseEntity<ApplicationResponseUpdateStatus> updateStatusApplication(@RequestBody ApplicationRequestUpdateStatus applicationRequestUpdateStatus) {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                this.reviewApplicationsManagementPort.updateStatusApplication(applicationRequestUpdateStatus)
+        );
+    }
+
 
 }

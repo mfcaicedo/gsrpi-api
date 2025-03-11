@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface StatusApplicationRepository extends JpaRepository<StatusApplicationEntity, Long> {
     StatusApplicationEntity findByName(String name);
 
+    boolean existsByName(String name);
 }

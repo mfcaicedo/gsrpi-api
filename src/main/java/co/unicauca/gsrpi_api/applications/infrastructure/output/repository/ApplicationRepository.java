@@ -11,4 +11,6 @@ public interface ApplicationRepository extends JpaRepository<ApplicationEntity, 
     List<ApplicationEntity> findAllByTeacherApplications_Teacher_TeacherIdOrderByCreateAtDesc(Long teacherId);
 
     List<ApplicationEntity> findAllByDepartment_Faculty_FacultyIdOrderByCreateAtAsc(long departmentFacultyFacultyId);
+
+    ApplicationEntity findByApplicationId(Long applicationId);
 }
