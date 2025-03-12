@@ -14,4 +14,5 @@ public interface ReviewApplicationManagementOutPort {
     List<ValidationType> getAllValidationTypes();
     List<StatusApplication> getAllStatusApplications();
     Application updateStatusApplication(Application application);
+    List<Validation> getAllValidationsByApplicationIdAndPersonId(Long applicationId, Long personId);
 }

@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface ValidationRepository extends JpaRepository<ValidationEntity, Long> {
     List<ValidationEntity> findAllByApplication_ApplicationId(Long applicationId);
+    List<ValidationEntity> findAllByApplication_ApplicationIdAndPerson_PersonId(Long applicationApplicationId, Long personPersonId);
 }

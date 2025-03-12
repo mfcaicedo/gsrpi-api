@@ -10,6 +10,7 @@ import co.unicauca.gsrpi_api.applications.infrastructure.output.repository.Statu
 import co.unicauca.gsrpi_api.review_applications.application.port.output.ReviewApplicationManagementOutPort;
 import co.unicauca.gsrpi_api.review_applications.domain.model.Validation;
 import co.unicauca.gsrpi_api.review_applications.domain.model.ValidationType;
+import co.unicauca.gsrpi_api.review_applications.infrastructure.output.entity.ValidationEntity;
 import co.unicauca.gsrpi_api.review_applications.infrastructure.output.mapper.MapStructReviewApplicationsMapper;
 import co.unicauca.gsrpi_api.review_applications.infrastructure.output.repository.ValidationRepository;
 import co.unicauca.gsrpi_api.review_applications.infrastructure.output.repository.ValidationTypeRepository;
@@ -126,6 +127,15 @@ public class ReviewApplicationsAdapter implements ReviewApplicationManagementOut
 
         return this.mapStructReviewApplicationsMapper.aplicationEntityToApplication(
                 this.applicationRepository.save(applicationEntity)
+        );
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Validation> getAllValidationsByApplicationIdAndPersonId(Long applicationId, Long personId) {
+        List<ValidationEntity> validationEntity = this.validationRepository.findAllByApplication_ApplicationIdAndPerson_PersonId(applicationId, personId);
+        return this.mapStructReviewApplicationsMapper.validationEntityListToValidationList(
+                this.validationRepository.findAllByApplication_ApplicationIdAndPerson_PersonId(applicationId, personId)
         );
     }
 }

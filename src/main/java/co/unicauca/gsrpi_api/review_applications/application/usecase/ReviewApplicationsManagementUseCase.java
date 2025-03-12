@@ -63,4 +63,11 @@ public class ReviewApplicationsManagementUseCase implements ReviewApplicationsMa
                 )
         );
     }
+
+    @Override
+    public List<ValidationResponseGetAllByApplicationId> getAllValidationsByApplicationIdAndPersonId(Long applicationId, Long personId) {
+        return this.reviewApplicationsMapper.ValidationListToValidationResponseGetAllByApplicationIdList(
+                this.reviewApplicationManagementOutPort.getAllValidationsByApplicationIdAndPersonId(applicationId, personId)
+        );
+    }
 }

@@ -15,7 +15,7 @@ public class ApplicationEntity {
     private Long applicationId;
     @Column(name = "descripcion", columnDefinition = "TEXT", nullable = true)
     private String description;
-    @Column(name = "numero_autores", columnDefinition = "SMALLINT", nullable = false)
+    @Column(name = "numero_autores", nullable = false)
     private Integer numberOfAuthors;
     @Column(name = "terminios_condiciones", columnDefinition = "BOOLEAN", nullable = false)
     private Boolean termsAndConditions;

@@ -64,5 +64,11 @@ public class ReviewApplicationsRestController {
         );
     }
 
+    @GetMapping("obtener-listado-validaciones-por-solicitud-id-y-persona-id/{applicationId}/{personId}")
+    public ResponseEntity<List<ValidationResponseGetAllByApplicationId>> getAllValidationsByApplicationIdAndPersonId(@PathVariable Long applicationId, @PathVariable Long personId) {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                this.reviewApplicationsManagementPort.getAllValidationsByApplicationIdAndPersonId(applicationId, personId)
+        );
+    }
 
 }
