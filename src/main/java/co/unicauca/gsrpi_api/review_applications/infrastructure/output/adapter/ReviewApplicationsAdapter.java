@@ -57,7 +57,6 @@ public class ReviewApplicationsAdapter implements ReviewApplicationManagementOut
     @Override
     @Transactional
     public Validation saveValidation(Validation validation) {
-        System.out.println(validation.toString());
         //TODO: verificar si la producción existe y obtenerla si existe.
         if (this.applicationRepository.existsById(validation.getApplication().getApplicationId())) {
             ApplicationEntity applicationEntity = this.applicationRepository.findByApplicationId(validation.getApplication().getApplicationId());
@@ -133,7 +132,6 @@ public class ReviewApplicationsAdapter implements ReviewApplicationManagementOut
     @Override
     @Transactional(readOnly = true)
     public List<Validation> getAllValidationsByApplicationIdAndPersonId(Long applicationId, Long personId) {
-        List<ValidationEntity> validationEntity = this.validationRepository.findAllByApplication_ApplicationIdAndPerson_PersonId(applicationId, personId);
         return this.mapStructReviewApplicationsMapper.validationEntityListToValidationList(
                 this.validationRepository.findAllByApplication_ApplicationIdAndPerson_PersonId(applicationId, personId)
         );

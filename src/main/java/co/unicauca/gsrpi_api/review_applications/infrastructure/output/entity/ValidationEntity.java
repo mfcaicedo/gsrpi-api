@@ -11,9 +11,9 @@ public class ValidationEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "validacion_id")
     private long validationId;
-    @Column(name = "estado_validacion")
-    private String validationState;
-    @Column(name = "observaciones")
+    @Column(name = "estado_validacion", columnDefinition = "BOOLEAN", nullable = false)
+    private Boolean validationState;
+    @Column(name = "observaciones", columnDefinition = "TEXT")
     private String observations;
     //Relacion muchos a uno con la tabla application
     @ManyToOne
@@ -31,7 +31,7 @@ public class ValidationEntity {
     public ValidationEntity() {
     }
 
-    public ValidationEntity(long validationId, String validationState, String observations, ApplicationEntity application, ValidationTypeEntity validationType, PersonEntity person) {
+    public ValidationEntity(long validationId, Boolean validationState, String observations, ApplicationEntity application, ValidationTypeEntity validationType, PersonEntity person) {
         this.validationId = validationId;
         this.validationState = validationState;
         this.observations = observations;
@@ -48,11 +48,11 @@ public class ValidationEntity {
         this.validationId = validationId;
     }
 
-    public String getValidationState() {
+    public Boolean getValidationState() {
         return validationState;
     }
 
-    public void setValidationState(String validationState) {
+    public void setValidationState(Boolean validationState) {
         this.validationState = validationState;
     }
 

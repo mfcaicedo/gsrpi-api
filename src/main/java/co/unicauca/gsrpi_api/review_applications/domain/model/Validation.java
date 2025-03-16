@@ -5,7 +5,7 @@ import co.unicauca.gsrpi_api.user_management.domain.model.Person;
 
 public class Validation {
     private long validationId;
-    private String validationState;
+    private Boolean validationState;
     private String observations;
     //Relacion muchos a uno con la tabla application
     private Application application;
@@ -17,7 +17,7 @@ public class Validation {
     public Validation() {
     }
 
-    public Validation(long validationId, String validationState, String observations, Application application, ValidationType validationType, Person person) {
+    public Validation(long validationId, Boolean validationState, String observations, Application application, ValidationType validationType, Person person) {
         this.validationId = validationId;
         this.validationState = validationState;
         this.observations = observations;
@@ -34,11 +34,11 @@ public class Validation {
         this.validationId = validationId;
     }
 
-    public String getValidationState() {
+    public Boolean getValidationState() {
         return validationState;
     }
 
-    public void setValidationState(String validationState) {
+    public void setValidationState(Boolean validationState) {
         this.validationState = validationState;
     }
 

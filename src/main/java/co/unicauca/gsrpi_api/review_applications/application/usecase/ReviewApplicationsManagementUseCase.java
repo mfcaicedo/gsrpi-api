@@ -1,5 +1,6 @@
 package co.unicauca.gsrpi_api.review_applications.application.usecase;
 
+import co.unicauca.gsrpi_api.applications.domain.model.Application;
 import co.unicauca.gsrpi_api.review_applications.application.mapper.ReviewApplicationsMapper;
 import co.unicauca.gsrpi_api.review_applications.application.port.input.ReviewApplicationsManagementPort;
 import co.unicauca.gsrpi_api.review_applications.application.port.output.ReviewApplicationManagementOutPort;

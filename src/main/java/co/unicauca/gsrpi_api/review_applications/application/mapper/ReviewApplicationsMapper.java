@@ -24,6 +24,7 @@ public interface ReviewApplicationsMapper {
     List<StatusApplicationResponseGetAll> statusApplicationListToStatusApplicationResponseGetAllList(List<StatusApplication> statusApplications);
     ApplicationResponseUpdateStatus applicationRequestUpdateStatusToApplicationResponseUpdateStatus( ApplicationRequestUpdateStatus applicationRequestUpdateStatus);
     ApplicationResponseUpdateStatus applicationToApplicationResponseUpdateStatus(Application application);
+    StatusApplication statusApplicationRequestToStatusApplication(StatusApplicationRequestUpdateStatus statusApplicationRequestUpdateStatus);
     Application applicationRequestUpdateStatusToApplication(ApplicationRequestUpdateStatus applicationRequestUpdateStatus);
 }
 
