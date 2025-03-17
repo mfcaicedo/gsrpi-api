@@ -12,5 +12,8 @@ public interface ApplicationRepository extends JpaRepository<ApplicationEntity, 
 
     List<ApplicationEntity> findAllByDepartment_Faculty_FacultyIdOrderByCreateAtAsc(long departmentFacultyFacultyId);
 
+    List<ApplicationEntity> findAllByDepartment_Faculty_FacultyIdAndApplicationStatus_StatusApplicationIdOrderByCreateAtAsc(long departmentFacultyFacultyId,
+                                                                                                                            long applicationStatusStatusApplicationId);
+
     ApplicationEntity findByApplicationId(Long applicationId);
 }

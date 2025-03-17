@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface ReviewApplicationManagementOutPort {
     List<Application> getAllApplicationsByFacultyId(Long facultyId);
+    List<Application> getAllApplicationsByFacultyIdAndSpecificStatus(Long facultyId, String statusApplication);
     Validation saveValidation(Validation validation);
     List<Validation> getAllValidationsByApplicationId(Long applicationId);
     List<ValidationType> getAllValidationTypes();

@@ -29,6 +29,14 @@ public class ReviewApplicationsRestController {
         );
     }
 
+    @GetMapping("obtener-listado-solicitudes-por-facultad-id-y-estado-especifico/{facultyId}/{status}")
+    public ResponseEntity<List<ApplicationResponseGetAllByFacultyId>> getAllApplicationByTeacherId(@PathVariable Long facultyId,
+                                                                                                   @PathVariable String status) {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                this.reviewApplicationsManagementPort.getAllApplicationsByFacultyIdAndSpecificStatus(facultyId, status)
+        );
+    }
+
     @PostMapping("guardar-validacion")
     public ResponseEntity<ValidationResponse> saveValidation(@RequestBody ValidationRequest validationRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(

@@ -28,6 +28,13 @@ public class ReviewApplicationsManagementUseCase implements ReviewApplicationsMa
     }
 
     @Override
+    public List<ApplicationResponseGetAllByFacultyId> getAllApplicationsByFacultyIdAndSpecificStatus(Long facultyId, String statusApplication) {
+        return this.reviewApplicationsMapper.ApplicationListToApplicationResponseGetAllByFacultyIdList(
+                this.reviewApplicationManagementOutPort.getAllApplicationsByFacultyIdAndSpecificStatus(facultyId, statusApplication)
+        );
+    }
+
+    @Override
     public ValidationResponse saveValidation(ValidationRequest validationRequest) {
         Validation validation = this.reviewApplicationsMapper.validationRequestToValidation(validationRequest);
         return this.reviewApplicationsMapper.validationToValidationResponse(this.reviewApplicationManagementOutPort.saveValidation(

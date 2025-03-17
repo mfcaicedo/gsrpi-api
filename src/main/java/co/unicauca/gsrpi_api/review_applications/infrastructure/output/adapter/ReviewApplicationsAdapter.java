@@ -55,6 +55,20 @@ public class ReviewApplicationsAdapter implements ReviewApplicationManagementOut
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public List<Application> getAllApplicationsByFacultyIdAndSpecificStatus(Long facultyId, String statusApplication) {
+
+        Long statusApplicationId = this.statusApplicationRepository.findByName(statusApplication).getStatusApplicationId();
+        //Valido que el estado de la solicitud exista
+        if (statusApplicationId == null) {
+            return null;
+        }
+        return this.mapStructReviewApplicationsMapper.applicationEntityListToApplicationList(
+                this.applicationRepository.findAllByDepartment_Faculty_FacultyIdAndApplicationStatus_StatusApplicationIdOrderByCreateAtAsc(facultyId, statusApplicationId)
+        );
+    }
+
+    @Override
     @Transactional
     public Validation saveValidation(Validation validation) {
         //TODO: verificar si la producción existe y obtenerla si existe.
