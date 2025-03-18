@@ -190,7 +190,7 @@ public class ApplicationManagementAdapter implements ApplicationManagementOutPor
         }
         //TODO: 7. Crear una entidad de docente-solicitud
         TeacherApplicationEntity teacherApplicationEntity = new TeacherApplicationEntity(
-                null, "primario", teacherEntity, null
+                 null, "primario", null, null, teacherEntity, null
         );
 
         //TODO: 8. Debo crear el objeto solicitud que quedara con un listado de docente-solcitud,

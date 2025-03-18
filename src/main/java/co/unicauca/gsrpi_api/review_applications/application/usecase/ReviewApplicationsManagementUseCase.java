@@ -88,4 +88,13 @@ public class ReviewApplicationsManagementUseCase implements ReviewApplicationsMa
                 )
         );
     }
+
+    @Override
+    public TeacherApplicationResponse updatePointsApplicationRecognition(TeacherApplicationRequestSavePoints teacherApplicationRequestSavePoints) {
+        return this.reviewApplicationsMapper.teacherApplicationToTeacherApplicationResponse(
+                this.reviewApplicationManagementOutPort.updatePointsApplicationRecognition(
+                        this.reviewApplicationsMapper.teacherApplicationRequestSavePointsToTeacherApplication(teacherApplicationRequestSavePoints)
+                )
+        );
+    }
 }

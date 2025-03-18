@@ -11,10 +11,10 @@ public class TeacherApplicationEntity {
     private Long teacherApplicationId;
     @Column(name = "tipo_docente_solicitante",columnDefinition = "TEXT", nullable = false)
     private String typeOfRequestingTeacher; //Valores de primario y secundario
-    @Column(name = "puntos_recomendados", columnDefinition = "SMALLINT", nullable = true)
-    private short recommendedPoints;
-    @Column(name = "puntos_asignados", columnDefinition = "SMALLINT", nullable = true)
-    private short assignedPoints;
+    @Column(name = "puntos_recomendados", columnDefinition = "DOUBLE PRECISION", nullable = true)
+    private Double recommendedPoints;
+    @Column(name = "puntos_asignados", columnDefinition = "DOUBLE PRECISION", nullable = true)
+    private Double assignedPoints;
     //Relacion many to one con docente
     @ManyToOne
     @JoinColumn(name = "docente_id", nullable = false)
@@ -27,7 +27,7 @@ public class TeacherApplicationEntity {
     public TeacherApplicationEntity() {
     }
 
-    public TeacherApplicationEntity(Long teacherApplicationId, String typeOfRequestingTeacher, short recommendedPoints, short assignedPoints, TeacherEntity teacher, ApplicationEntity application) {
+    public TeacherApplicationEntity(Long teacherApplicationId, String typeOfRequestingTeacher, Double recommendedPoints, Double assignedPoints, TeacherEntity teacher, ApplicationEntity application) {
         this.teacherApplicationId = teacherApplicationId;
         this.typeOfRequestingTeacher = typeOfRequestingTeacher;
         this.recommendedPoints = recommendedPoints;
@@ -52,19 +52,19 @@ public class TeacherApplicationEntity {
         this.typeOfRequestingTeacher = typeOfRequestingTeacher;
     }
 
-    public short getRecommendedPoints() {
+    public Double getRecommendedPoints() {
         return recommendedPoints;
     }
 
-    public void setRecommendedPoints(short recommendedPoints) {
+    public void setRecommendedPoints(Double recommendedPoints) {
         this.recommendedPoints = recommendedPoints;
     }
 
-    public short getAssignedPoints() {
+    public Double getAssignedPoints() {
         return assignedPoints;
     }
 
-    public void setAssignedPoints(short assignedPoints) {
+    public void setAssignedPoints(Double assignedPoints) {
         this.assignedPoints = assignedPoints;
     }
 

@@ -173,4 +173,24 @@ public class ReviewApplicationsAdapter implements ReviewApplicationManagementOut
                 this.teacherApplicationRepository.save(teacherApplicationEntity)
         );
     }
+
+    @Override
+    public TeacherApplication updatePointsApplicationRecognition(TeacherApplication teacherApplication) {
+        //Busco por id la entidad docente_solicitud y si existe la obtengo
+        if (!this.teacherApplicationRepository.existsById(teacherApplication.getTeacherApplicationId())) {
+            return null;
+        }
+
+        //Obtengo la entidad docente_solicitud
+        TeacherApplicationEntity teacherApplicationEntity = this.teacherApplicationRepository.findByTeacherApplicationId(
+                teacherApplication.getTeacherApplicationId()
+        );
+        //Seteo los puntos asignados
+        teacherApplicationEntity.setAssignedPoints(teacherApplication.getAssignedPoints());
+        //Guardo los cambios
+        return this.mapStructReviewApplicationsMapper.teacherApplicationEntityToTeacherApplication(
+                this.teacherApplicationRepository.save(teacherApplicationEntity)
+        );
+
+    }
 }

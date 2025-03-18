@@ -2,13 +2,13 @@ package co.unicauca.gsrpi_api.review_applications.domain.model.dto.request;
 
 public class TeacherApplicationRequestSavePoints {
     private Long teacherApplicationId;
-    private short recommendedPoints;
-    private short assignedPoints;
+    private Double recommendedPoints;
+    private Double assignedPoints;
 
     public TeacherApplicationRequestSavePoints() {
     }
 
-    public TeacherApplicationRequestSavePoints(Long teacherApplicationId, short recommendedPoints, short assignedPoints) {
+    public TeacherApplicationRequestSavePoints(Long teacherApplicationId, Double recommendedPoints, Double assignedPoints) {
         this.teacherApplicationId = teacherApplicationId;
         this.recommendedPoints = recommendedPoints;
         this.assignedPoints = assignedPoints;
@@ -22,19 +22,19 @@ public class TeacherApplicationRequestSavePoints {
         this.teacherApplicationId = teacherApplicationId;
     }
 
-    public short getRecommendedPoints() {
+    public Double getRecommendedPoints() {
         return recommendedPoints;
     }
 
-    public void setRecommendedPoints(short recommendedPoints) {
+    public void setRecommendedPoints(Double recommendedPoints) {
         this.recommendedPoints = recommendedPoints;
     }
 
-    public short getAssignedPoints() {
+    public Double getAssignedPoints() {
         return assignedPoints;
     }
 
-    public void setAssignedPoints(short assignedPoints) {
+    public void setAssignedPoints(Double assignedPoints) {
         this.assignedPoints = assignedPoints;
     }
 }

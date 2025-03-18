@@ -17,5 +17,6 @@ public interface ReviewApplicationsManagementPort {
     ApplicationResponseUpdateStatus updateStatusApplication(ApplicationRequestUpdateStatus applicationRequestUpdateStatus);
     List<ValidationResponseGetAllByApplicationId> getAllValidationsByApplicationIdAndPersonId(Long applicationId, Long personId);
     TeacherApplicationResponse savePointsApplicationRecognition(TeacherApplicationRequestSavePoints teacherApplicationRequestSavePoints);
+    TeacherApplicationResponse updatePointsApplicationRecognition(TeacherApplicationRequestSavePoints teacherApplicationRequestSavePoints);
 
 }

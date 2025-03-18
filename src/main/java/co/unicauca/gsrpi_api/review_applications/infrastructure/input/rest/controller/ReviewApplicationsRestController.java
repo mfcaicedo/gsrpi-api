@@ -87,4 +87,11 @@ public class ReviewApplicationsRestController {
         );
     }
 
+    @PutMapping("actualizar-puntos-reconocimiento-solicitud")
+    public ResponseEntity<TeacherApplicationResponse> updatePointsApplicationRecognition(@RequestBody TeacherApplicationRequestSavePoints teacherApplicationRequestSavePoints) {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                this.reviewApplicationsManagementPort.updatePointsApplicationRecognition(teacherApplicationRequestSavePoints)
+        );
+    }
+
 }
