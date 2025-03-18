@@ -1,9 +1,5 @@
 package co.unicauca.gsrpi_api.review_applications.domain.model.dto.response;
 
-import co.unicauca.gsrpi_api.applications.domain.model.dto.response.TeacherResponse;
-import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.ApplicationEntity;
-import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.TeacherEntity;
-
 public class TeacherApplicationResponseGetAllByFacultyId {
     private Long teacherApplicationId;
     private String typeOfRequestingTeacher; //Valores de primario y secundario

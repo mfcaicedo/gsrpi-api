@@ -2,8 +2,10 @@ package co.unicauca.gsrpi_api.review_applications.infrastructure.output.mapper;
 
 import co.unicauca.gsrpi_api.applications.domain.model.Application;
 import co.unicauca.gsrpi_api.applications.domain.model.StatusApplication;
+import co.unicauca.gsrpi_api.applications.domain.model.TeacherApplication;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.ApplicationEntity;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.StatusApplicationEntity;
+import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.TeacherApplicationEntity;
 import co.unicauca.gsrpi_api.auth.domain.model.Role;
 import co.unicauca.gsrpi_api.auth.domain.model.UserRole;
 import co.unicauca.gsrpi_api.auth.infrastructure.output.entity.RoleEntity;
@@ -42,5 +44,6 @@ public interface MapStructReviewApplicationsMapper {
     Person personEntityToPerson(PersonEntity personEntity);
     List<StatusApplication> statusApplicationEntityListToStatusApplicationList(List<StatusApplicationEntity> statusApplicationEntityList);
     ApplicationEntity applicationToApplicationEntity(Application application);
+    TeacherApplication teacherApplicationEntityToTeacherApplication(TeacherApplicationEntity teacherApplication);
 
 }

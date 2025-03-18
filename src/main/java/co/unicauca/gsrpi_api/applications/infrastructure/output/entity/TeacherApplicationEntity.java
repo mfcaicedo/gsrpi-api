@@ -11,6 +11,10 @@ public class TeacherApplicationEntity {
     private Long teacherApplicationId;
     @Column(name = "tipo_docente_solicitante",columnDefinition = "TEXT", nullable = false)
     private String typeOfRequestingTeacher; //Valores de primario y secundario
+    @Column(name = "puntos_recomendados", columnDefinition = "SMALLINT", nullable = true)
+    private short recommendedPoints;
+    @Column(name = "puntos_asignados", columnDefinition = "SMALLINT", nullable = true)
+    private short assignedPoints;
     //Relacion many to one con docente
     @ManyToOne
     @JoinColumn(name = "docente_id", nullable = false)
@@ -23,9 +27,11 @@ public class TeacherApplicationEntity {
     public TeacherApplicationEntity() {
     }
 
-    public TeacherApplicationEntity(Long teacherApplicationId, String typeOfRequestingTeacher, TeacherEntity teacher, ApplicationEntity application) {
+    public TeacherApplicationEntity(Long teacherApplicationId, String typeOfRequestingTeacher, short recommendedPoints, short assignedPoints, TeacherEntity teacher, ApplicationEntity application) {
         this.teacherApplicationId = teacherApplicationId;
         this.typeOfRequestingTeacher = typeOfRequestingTeacher;
+        this.recommendedPoints = recommendedPoints;
+        this.assignedPoints = assignedPoints;
         this.teacher = teacher;
         this.application = application;
     }
@@ -44,6 +50,22 @@ public class TeacherApplicationEntity {
 
     public void setTypeOfRequestingTeacher(String typeOfRequestingTeacher) {
         this.typeOfRequestingTeacher = typeOfRequestingTeacher;
+    }
+
+    public short getRecommendedPoints() {
+        return recommendedPoints;
+    }
+
+    public void setRecommendedPoints(short recommendedPoints) {
+        this.recommendedPoints = recommendedPoints;
+    }
+
+    public short getAssignedPoints() {
+        return assignedPoints;
+    }
+
+    public void setAssignedPoints(short assignedPoints) {
+        this.assignedPoints = assignedPoints;
     }
 
     public TeacherEntity getTeacher() {

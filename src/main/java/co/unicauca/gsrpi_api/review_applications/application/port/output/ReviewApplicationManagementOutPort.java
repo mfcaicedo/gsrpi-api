@@ -2,6 +2,7 @@ package co.unicauca.gsrpi_api.review_applications.application.port.output;
 
 import co.unicauca.gsrpi_api.applications.domain.model.Application;
 import co.unicauca.gsrpi_api.applications.domain.model.StatusApplication;
+import co.unicauca.gsrpi_api.applications.domain.model.TeacherApplication;
 import co.unicauca.gsrpi_api.review_applications.domain.model.Validation;
 import co.unicauca.gsrpi_api.review_applications.domain.model.ValidationType;
 
@@ -16,4 +17,5 @@ public interface ReviewApplicationManagementOutPort {
     List<StatusApplication> getAllStatusApplications();
     Application updateStatusApplication(Application application);
     List<Validation> getAllValidationsByApplicationIdAndPersonId(Long applicationId, Long personId);
+    TeacherApplication savePointsApplicationRecognition(TeacherApplication teacherApplication);
 }

@@ -6,6 +6,7 @@ import co.unicauca.gsrpi_api.review_applications.application.port.input.ReviewAp
 import co.unicauca.gsrpi_api.review_applications.application.port.output.ReviewApplicationManagementOutPort;
 import co.unicauca.gsrpi_api.review_applications.domain.model.Validation;
 import co.unicauca.gsrpi_api.review_applications.domain.model.dto.request.ApplicationRequestUpdateStatus;
+import co.unicauca.gsrpi_api.review_applications.domain.model.dto.request.TeacherApplicationRequestSavePoints;
 import co.unicauca.gsrpi_api.review_applications.domain.model.dto.request.ValidationRequest;
 import co.unicauca.gsrpi_api.review_applications.domain.model.dto.response.*;
 
@@ -76,6 +77,15 @@ public class ReviewApplicationsManagementUseCase implements ReviewApplicationsMa
     public List<ValidationResponseGetAllByApplicationId> getAllValidationsByApplicationIdAndPersonId(Long applicationId, Long personId) {
         return this.reviewApplicationsMapper.ValidationListToValidationResponseGetAllByApplicationIdList(
                 this.reviewApplicationManagementOutPort.getAllValidationsByApplicationIdAndPersonId(applicationId, personId)
+        );
+    }
+
+    @Override
+    public TeacherApplicationResponse savePointsApplicationRecognition(TeacherApplicationRequestSavePoints teacherApplicationRequestSavePoints) {
+        return this.reviewApplicationsMapper.teacherApplicationToTeacherApplicationResponse(
+                this.reviewApplicationManagementOutPort.savePointsApplicationRecognition(
+                        this.reviewApplicationsMapper.teacherApplicationRequestSavePointsToTeacherApplication(teacherApplicationRequestSavePoints)
+                )
         );
     }
 }

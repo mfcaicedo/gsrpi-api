@@ -2,6 +2,7 @@ package co.unicauca.gsrpi_api.review_applications.application.mapper;
 
 import co.unicauca.gsrpi_api.applications.domain.model.Application;
 import co.unicauca.gsrpi_api.applications.domain.model.StatusApplication;
+import co.unicauca.gsrpi_api.applications.domain.model.TeacherApplication;
 import co.unicauca.gsrpi_api.review_applications.domain.model.Validation;
 import co.unicauca.gsrpi_api.review_applications.domain.model.ValidationType;
 import co.unicauca.gsrpi_api.review_applications.domain.model.dto.request.*;
@@ -26,5 +27,7 @@ public interface ReviewApplicationsMapper {
     ApplicationResponseUpdateStatus applicationToApplicationResponseUpdateStatus(Application application);
     StatusApplication statusApplicationRequestToStatusApplication(StatusApplicationRequestUpdateStatus statusApplicationRequestUpdateStatus);
     Application applicationRequestUpdateStatusToApplication(ApplicationRequestUpdateStatus applicationRequestUpdateStatus);
+    TeacherApplicationResponse teacherApplicationToTeacherApplicationResponse(TeacherApplication teacherApplication);
+    TeacherApplication teacherApplicationRequestSavePointsToTeacherApplication(TeacherApplicationRequestSavePoints teacherApplicationRequestSavePoints);
 }
 

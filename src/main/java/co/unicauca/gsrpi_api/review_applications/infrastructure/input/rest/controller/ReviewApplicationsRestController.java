@@ -4,6 +4,7 @@ import co.unicauca.gsrpi_api.applications.domain.model.dto.response.ApplicationR
 import co.unicauca.gsrpi_api.review_applications.application.port.input.ReviewApplicationsManagementPort;
 import co.unicauca.gsrpi_api.review_applications.domain.model.ValidationType;
 import co.unicauca.gsrpi_api.review_applications.domain.model.dto.request.ApplicationRequestUpdateStatus;
+import co.unicauca.gsrpi_api.review_applications.domain.model.dto.request.TeacherApplicationRequestSavePoints;
 import co.unicauca.gsrpi_api.review_applications.domain.model.dto.request.ValidationRequest;
 import co.unicauca.gsrpi_api.review_applications.domain.model.dto.response.*;
 import org.springframework.http.HttpStatus;
@@ -76,6 +77,13 @@ public class ReviewApplicationsRestController {
     public ResponseEntity<List<ValidationResponseGetAllByApplicationId>> getAllValidationsByApplicationIdAndPersonId(@PathVariable Long applicationId, @PathVariable Long personId) {
         return ResponseEntity.status(HttpStatus.OK).body(
                 this.reviewApplicationsManagementPort.getAllValidationsByApplicationIdAndPersonId(applicationId, personId)
+        );
+    }
+
+    @PostMapping("guardar-puntos-reconocimiento-solicitud")
+    public ResponseEntity<TeacherApplicationResponse> savePointsApplicationRecognition(@RequestBody TeacherApplicationRequestSavePoints teacherApplicationRequestSavePoints) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+                this.reviewApplicationsManagementPort.savePointsApplicationRecognition(teacherApplicationRequestSavePoints)
         );
     }
 

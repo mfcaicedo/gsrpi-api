@@ -6,6 +6,8 @@ import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.TeacherEn
 public class TeacherApplication {
     private Long teacherApplicationId;
     private String typeOfRequestingTeacher; //Valores de primario y secundario
+    private short recommendedPoints;
+    private short assignedPoints;
     //Relacion many to one con docente
     private TeacherEntity teacher;
     //Relacion many to one con solicitud
@@ -14,9 +16,11 @@ public class TeacherApplication {
     public TeacherApplication() {
     }
 
-    public TeacherApplication(Long teacherApplicationId, String typeOfRequestingTeacher, TeacherEntity teacher, ApplicationEntity application) {
+    public TeacherApplication(Long teacherApplicationId, String typeOfRequestingTeacher, short recommendedPoints, short assignedPoints, TeacherEntity teacher, ApplicationEntity application) {
         this.teacherApplicationId = teacherApplicationId;
         this.typeOfRequestingTeacher = typeOfRequestingTeacher;
+        this.recommendedPoints = recommendedPoints;
+        this.assignedPoints = assignedPoints;
         this.teacher = teacher;
         this.application = application;
     }
@@ -35,6 +39,22 @@ public class TeacherApplication {
 
     public void setTypeOfRequestingTeacher(String typeOfRequestingTeacher) {
         this.typeOfRequestingTeacher = typeOfRequestingTeacher;
+    }
+
+    public short getRecommendedPoints() {
+        return recommendedPoints;
+    }
+
+    public void setRecommendedPoints(short recommendedPoints) {
+        this.recommendedPoints = recommendedPoints;
+    }
+
+    public short getAssignedPoints() {
+        return assignedPoints;
+    }
+
+    public void setAssignedPoints(short assignedPoints) {
+        this.assignedPoints = assignedPoints;
     }
 
     public TeacherEntity getTeacher() {

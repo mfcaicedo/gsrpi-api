@@ -2,9 +2,11 @@ package co.unicauca.gsrpi_api.review_applications.infrastructure.output.adapter;
 
 import co.unicauca.gsrpi_api.applications.domain.model.Application;
 import co.unicauca.gsrpi_api.applications.domain.model.StatusApplication;
+import co.unicauca.gsrpi_api.applications.domain.model.TeacherApplication;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.ApplicationEntity;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.ProductionEntity;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.StatusApplicationEntity;
+import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.TeacherApplicationEntity;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.repository.ApplicationRepository;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.repository.StatusApplicationRepository;
 import co.unicauca.gsrpi_api.review_applications.application.port.output.ReviewApplicationManagementOutPort;
@@ -12,6 +14,7 @@ import co.unicauca.gsrpi_api.review_applications.domain.model.Validation;
 import co.unicauca.gsrpi_api.review_applications.domain.model.ValidationType;
 import co.unicauca.gsrpi_api.review_applications.infrastructure.output.entity.ValidationEntity;
 import co.unicauca.gsrpi_api.review_applications.infrastructure.output.mapper.MapStructReviewApplicationsMapper;
+import co.unicauca.gsrpi_api.review_applications.infrastructure.output.repository.TeacherApplicationRepository;
 import co.unicauca.gsrpi_api.review_applications.infrastructure.output.repository.ValidationRepository;
 import co.unicauca.gsrpi_api.review_applications.infrastructure.output.repository.ValidationTypeRepository;
 import co.unicauca.gsrpi_api.user_management.domain.model.Person;
@@ -30,6 +33,7 @@ public class ReviewApplicationsAdapter implements ReviewApplicationManagementOut
     private final ValidationTypeRepository validationTypeRepository;
     private final PersonRepository personRepository;
     private final StatusApplicationRepository statusApplicationRepository;
+    private final TeacherApplicationRepository teacherApplicationRepository;
     private final MapStructReviewApplicationsMapper mapStructReviewApplicationsMapper;
 
     public ReviewApplicationsAdapter(ApplicationRepository applicationRepository,
@@ -37,12 +41,14 @@ public class ReviewApplicationsAdapter implements ReviewApplicationManagementOut
                                      ValidationTypeRepository validationTypeRepository,
                                      PersonRepository personRepository,
                                      StatusApplicationRepository statusApplicationRepository,
+                                     TeacherApplicationRepository teacherApplicationRepository,
                                      MapStructReviewApplicationsMapper mapStructReviewApplicationsMapper) {
         this.applicationRepository = applicationRepository;
         this.validationRepository = validationRepository;
         this.validationTypeRepository = validationTypeRepository;
         this.personRepository = personRepository;
         this.statusApplicationRepository = statusApplicationRepository;
+        this.teacherApplicationRepository = teacherApplicationRepository;
         this.mapStructReviewApplicationsMapper = mapStructReviewApplicationsMapper;
     }
 
@@ -148,6 +154,23 @@ public class ReviewApplicationsAdapter implements ReviewApplicationManagementOut
     public List<Validation> getAllValidationsByApplicationIdAndPersonId(Long applicationId, Long personId) {
         return this.mapStructReviewApplicationsMapper.validationEntityListToValidationList(
                 this.validationRepository.findAllByApplication_ApplicationIdAndPerson_PersonId(applicationId, personId)
+        );
+    }
+
+    @Override
+    public TeacherApplication savePointsApplicationRecognition(TeacherApplication teacherApplication) {
+        //Busco por id la entidad docente_solicitud y si existe la obtengo
+        if (!this.teacherApplicationRepository.existsById(teacherApplication.getTeacherApplicationId())) {
+            return null;
+        }
+        //Obtengo la entidad docente_solicitud
+        TeacherApplicationEntity teacherApplicationEntity = this.teacherApplicationRepository.findByTeacherApplicationId(teacherApplication.getTeacherApplicationId());
+        //Seteo los puntos recomendados y asignados
+        teacherApplicationEntity.setRecommendedPoints(teacherApplication.getRecommendedPoints());
+        teacherApplicationEntity.setAssignedPoints(teacherApplication.getAssignedPoints());
+        //Guardo los cambios
+        return this.mapStructReviewApplicationsMapper.teacherApplicationEntityToTeacherApplication(
+                this.teacherApplicationRepository.save(teacherApplicationEntity)
         );
     }
 }
