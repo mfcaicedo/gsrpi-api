@@ -11,7 +11,7 @@ public class PrivilegeEntity {
     private long privilegeId;
     @Column(name = "nombre",columnDefinition = "TEXT", nullable = false, unique = true)
     private String name;
-    @Column(name = "descripcion",columnDefinition = "TEXT", nullable = true, length = 200)
+    @Column(name = "descripcion",columnDefinition = "TEXT", nullable = true)
     private String description;
 
 }

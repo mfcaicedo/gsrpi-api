@@ -4,7 +4,6 @@ import co.unicauca.gsrpi_api.applications.domain.model.Application;
 import co.unicauca.gsrpi_api.applications.domain.model.StatusApplication;
 import co.unicauca.gsrpi_api.applications.domain.model.TeacherApplication;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.ApplicationEntity;
-import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.ProductionEntity;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.StatusApplicationEntity;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.TeacherApplicationEntity;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.repository.ApplicationRepository;
@@ -12,13 +11,11 @@ import co.unicauca.gsrpi_api.applications.infrastructure.output.repository.Statu
 import co.unicauca.gsrpi_api.review_applications.application.port.output.ReviewApplicationManagementOutPort;
 import co.unicauca.gsrpi_api.review_applications.domain.model.Validation;
 import co.unicauca.gsrpi_api.review_applications.domain.model.ValidationType;
-import co.unicauca.gsrpi_api.review_applications.infrastructure.output.entity.ValidationEntity;
 import co.unicauca.gsrpi_api.review_applications.infrastructure.output.mapper.MapStructReviewApplicationsMapper;
 import co.unicauca.gsrpi_api.review_applications.infrastructure.output.repository.TeacherApplicationRepository;
 import co.unicauca.gsrpi_api.review_applications.infrastructure.output.repository.ValidationRepository;
 import co.unicauca.gsrpi_api.review_applications.infrastructure.output.repository.ValidationTypeRepository;
 import co.unicauca.gsrpi_api.user_management.domain.model.Person;
-import co.unicauca.gsrpi_api.user_management.infrastructure.output.entity.PersonEntity;
 import co.unicauca.gsrpi_api.user_management.infrastructure.output.respository.PersonRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -79,7 +76,6 @@ public class ReviewApplicationsAdapter implements ReviewApplicationManagementOut
     public Validation saveValidation(Validation validation) {
         //TODO: verificar si la producción existe y obtenerla si existe.
         if (this.applicationRepository.existsById(validation.getApplication().getApplicationId())) {
-            ApplicationEntity applicationEntity = this.applicationRepository.findByApplicationId(validation.getApplication().getApplicationId());
             Application application = this.mapStructReviewApplicationsMapper.aplicationEntityToApplication(
                     this.applicationRepository.findByApplicationId((validation.getApplication().getApplicationId())));
             validation.setApplication(application);

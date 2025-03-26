@@ -1,6 +1,7 @@
 package co.unicauca.gsrpi_api.review_applications.domain.model.dto.request;
 
 public class ValidationRequest {
+    private long validationId;
     private Boolean validationState;
     private String observations;
     //Relacion muchos a uno con la tabla application
@@ -13,12 +14,21 @@ public class ValidationRequest {
     public ValidationRequest() {
     }
 
-    public ValidationRequest(Boolean validationState, String observations, ApplicationRequestSaveValidation application, ValidationTypeRequest validationType, PersonRequestSaveValidation person) {
+    public ValidationRequest(long validationId, Boolean validationState, String observations, ApplicationRequestSaveValidation application, ValidationTypeRequest validationType, PersonRequestSaveValidation person) {
+        this.validationId = validationId;
         this.validationState = validationState;
         this.observations = observations;
         this.application = application;
         this.validationType = validationType;
         this.person = person;
+    }
+
+    public long getValidationId() {
+        return validationId;
+    }
+
+    public void setValidationId(long validationId) {
+        this.validationId = validationId;
     }
 
     public Boolean getValidationState() {
