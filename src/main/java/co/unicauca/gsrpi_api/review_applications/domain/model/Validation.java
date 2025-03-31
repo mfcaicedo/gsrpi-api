@@ -3,10 +3,14 @@ package co.unicauca.gsrpi_api.review_applications.domain.model;
 import co.unicauca.gsrpi_api.applications.domain.model.Application;
 import co.unicauca.gsrpi_api.user_management.domain.model.Person;
 
+import java.time.LocalDateTime;
+
 public class Validation {
     private long validationId;
     private Boolean validationState;
     private String observations;
+    private LocalDateTime createAt;
+    private LocalDateTime updateAt;
     //Relacion muchos a uno con la tabla application
     private Application application;
     //Relacion de muchos a uno con la tabla validationType
@@ -17,10 +21,12 @@ public class Validation {
     public Validation() {
     }
 
-    public Validation(long validationId, Boolean validationState, String observations, Application application, ValidationType validationType, Person person) {
+    public Validation(long validationId, Boolean validationState, String observations, LocalDateTime createAt, LocalDateTime updateAt, Application application, ValidationType validationType, Person person) {
         this.validationId = validationId;
         this.validationState = validationState;
         this.observations = observations;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
         this.application = application;
         this.validationType = validationType;
         this.person = person;
@@ -48,6 +54,22 @@ public class Validation {
 
     public void setObservations(String observations) {
         this.observations = observations;
+    }
+
+    public LocalDateTime getCreateAt() {
+        return createAt;
+    }
+
+    public void setCreateAt(LocalDateTime createAt) {
+        this.createAt = createAt;
+    }
+
+    public LocalDateTime getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(LocalDateTime updateAt) {
+        this.updateAt = updateAt;
     }
 
     public Application getApplication() {

@@ -20,6 +20,7 @@ import co.unicauca.gsrpi_api.user_management.infrastructure.output.respository.P
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -79,6 +80,10 @@ public class ReviewApplicationsAdapter implements ReviewApplicationManagementOut
             Application application = this.mapStructReviewApplicationsMapper.aplicationEntityToApplication(
                     this.applicationRepository.findByApplicationId((validation.getApplication().getApplicationId())));
             validation.setApplication(application);
+            validation.setUpdateAt(LocalDateTime.now());
+        }else {
+            validation.setCreateAt(LocalDateTime.now());
+            validation.setUpdateAt(validation.getCreateAt());
         }
         //TODO: verificar si  el tipo de validación existe y obtenerlo si existe.
         if (this.validationTypeRepository.existsById(validation.getValidationType().getValidationTypeId())) {
@@ -102,6 +107,7 @@ public class ReviewApplicationsAdapter implements ReviewApplicationManagementOut
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Validation> getAllValidationsByApplicationId(Long applicationId) {
         return this.mapStructReviewApplicationsMapper.validationEntityListToValidationList(
                 this.validationRepository.findAllByApplication_ApplicationId(applicationId)
