@@ -75,15 +75,23 @@ public class ReviewApplicationsAdapter implements ReviewApplicationManagementOut
     @Override
     @Transactional
     public Validation saveValidation(Validation validation) {
-        //TODO: verificar si la producción existe y obtenerla si existe.
+        //Verificar si existe la validación y obtenerla si existe para hacer actualizacion
+        if (this.validationRepository.existsById(validation.getValidationId())) {
+            Validation validationEntity = this.mapStructReviewApplicationsMapper.validationEntityToValidation(
+                    this.validationRepository.findByValidationId(validation.getValidationId())
+            );
+            validation.setValidationId(validationEntity.getValidationId());
+            validation.setCreateAt(validationEntity.getCreateAt());
+            validation.setUpdateAt(LocalDateTime.now());
+        } else {
+            validation.setCreateAt(LocalDateTime.now());
+            validation.setUpdateAt(validation.getCreateAt());
+        }
+        //TODO: verificar si la solicitud existe y obtenerla si existe.
         if (this.applicationRepository.existsById(validation.getApplication().getApplicationId())) {
             Application application = this.mapStructReviewApplicationsMapper.aplicationEntityToApplication(
                     this.applicationRepository.findByApplicationId((validation.getApplication().getApplicationId())));
             validation.setApplication(application);
-            validation.setUpdateAt(LocalDateTime.now());
-        }else {
-            validation.setCreateAt(LocalDateTime.now());
-            validation.setUpdateAt(validation.getCreateAt());
         }
         //TODO: verificar si  el tipo de validación existe y obtenerlo si existe.
         if (this.validationTypeRepository.existsById(validation.getValidationType().getValidationTypeId())) {

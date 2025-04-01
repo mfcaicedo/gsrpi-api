@@ -37,7 +37,6 @@ public class ReviewApplicationsManagementUseCase implements ReviewApplicationsMa
 
     @Override
     public ValidationResponse saveValidation(ValidationRequest validationRequest) {
-        Validation validation = this.reviewApplicationsMapper.validationRequestToValidation(validationRequest);
         return this.reviewApplicationsMapper.validationToValidationResponse(this.reviewApplicationManagementOutPort.saveValidation(
                 this.reviewApplicationsMapper.validationRequestToValidation(validationRequest))
         );
