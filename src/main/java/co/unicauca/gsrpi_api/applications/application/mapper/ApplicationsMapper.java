@@ -5,8 +5,13 @@ import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRe
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRecognizedRequestUpdate;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationTempRequest;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.response.*;
+import co.unicauca.gsrpi_api.applications.domain.model.dto.response.get_all_application_by_applcation_status.ApplicationResponseGetAllByApplicationStatus;
+import co.unicauca.gsrpi_api.applications.domain.model.dto.response.get_all_application_by_applcation_status.FacultyResponseGetAllByApplicationStatus;
+import co.unicauca.gsrpi_api.applications.domain.model.dto.response.get_all_application_by_applcation_status.TeacherApplicationResponseGetAllByApplicationStatus;
+import co.unicauca.gsrpi_api.applications.domain.model.dto.response.get_all_application_by_applcation_status.TeacherResponseGetAllByApplicationStatus;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.response.get_application_by_id.*;
 import co.unicauca.gsrpi_api.system_configuration.domain.model.Department;
+import co.unicauca.gsrpi_api.system_configuration.domain.model.Faculty;
 import co.unicauca.gsrpi_api.user_management.domain.model.Person;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -45,7 +50,9 @@ public interface ApplicationsMapper {
     ProductionResponseGetById productionToProductionResponseGetById(Production production);
     TeacherApplicationGetById teacherApplicationToTeacherApplicationGetById(TeacherApplication teacherApplication);
     List<TeacherApplicationGetById> teacherApplicationListToTeacherApplicationGetById(List<TeacherApplication> teacherApplications);
+    FacultyResponseGetAllByApplicationStatus facultyToFacultyResponseGetAllByApplicationStatus(Faculty faculty);
     TeacherResponseGetById teacherToTeacherResponseGetById(Teacher teacher);
     TypeProductionResponseGetById typeProductionToTypeProductionResponseGetById(TypeProduction typeProduction);
     ApplicationResponseGetById applicationToApplicationResponseGetById(Application application);
+    List<ApplicationResponseGetAllByApplicationStatus> applicationListToApplicationResponseGetAllByApplicationStatusList(List<Application> applications);
 }

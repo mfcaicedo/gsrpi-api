@@ -5,6 +5,7 @@ import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRe
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRequestCreate;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationTempRequest;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.response.*;
+import co.unicauca.gsrpi_api.applications.domain.model.dto.response.get_all_application_by_applcation_status.ApplicationResponseGetAllByApplicationStatus;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.response.get_application_by_id.ApplicationResponseGetById;
 
 import java.util.List;
@@ -34,4 +35,7 @@ public interface ApplicationManagementPort {
     List<ApplicationResponseGetAllByTeacherId> getAllApplicationByTeacherId(Long teacherId);
 
     ApplicationResponseGetById getApplicationById(Long applicationId);
+
+    List<ApplicationResponseGetAllByApplicationStatus> getAllApplicationByApplicationStatus(String applicationStatus);
+
 }

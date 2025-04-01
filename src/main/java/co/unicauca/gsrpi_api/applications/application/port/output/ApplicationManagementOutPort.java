@@ -30,4 +30,6 @@ public interface ApplicationManagementOutPort {
 
     Application getApplicationById(Long applicationId);
 
+    List<Application> getAllApplicationByApplicationStatus(String applicationStatus);
+
 }

@@ -6,6 +6,7 @@ import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRe
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationRequestCreate;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.request.ApplicationTempRequest;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.response.*;
+import co.unicauca.gsrpi_api.applications.domain.model.dto.response.get_all_application_by_applcation_status.ApplicationResponseGetAllByApplicationStatus;
 import co.unicauca.gsrpi_api.applications.domain.model.dto.response.get_application_by_id.ApplicationResponseGetById;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -95,6 +96,13 @@ public class ApplicationManagementRestController {
     public ResponseEntity<List<ApplicationResponseGetAllByTeacherId>> getAllApplicationByTeacherId(@PathVariable Long teacherId) {
         return ResponseEntity.status(HttpStatus.OK).body(
                 this.applicationManagementPort.getAllApplicationByTeacherId(teacherId)
+        );
+    }
+
+    @GetMapping("obtener-listado-solicitudes-por-estado-especifico/{applicationStatus}")
+    public ResponseEntity<List<ApplicationResponseGetAllByApplicationStatus>> getAllApplicationByApplicationStatus(@PathVariable String applicationStatus) {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                this.applicationManagementPort.getAllApplicationByApplicationStatus(applicationStatus)
         );
     }
 

@@ -26,6 +26,13 @@ public class DepartmentEntity {
         this.location = location;
     }
 
+    public DepartmentEntity(long departmentId, String name, String location, FacultyEntity faculty) {
+        this.departmentId = departmentId;
+        this.name = name;
+        this.location = location;
+        this.faculty = faculty;
+    }
+
     public long getDepartmentId() {
         return departmentId;
     }
@@ -48,5 +55,13 @@ public class DepartmentEntity {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public FacultyEntity getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(FacultyEntity faculty) {
+        this.faculty = faculty;
     }
 }

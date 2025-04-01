@@ -278,4 +278,14 @@ public class ApplicationManagementAdapter implements ApplicationManagementOutPor
         );
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<Application> getAllApplicationByApplicationStatus(String applicationStatus) {
+        List<ApplicationEntity> applicationEntity = this.applicationRepository.findAllByApplicationStatus_Name(applicationStatus);
+        System.out.println(applicationEntity);
+        return this.mapStructApplicationsMapper.applicationEntityListToApplicationList(
+                this.applicationRepository.findAllByApplicationStatus_Name(applicationStatus)
+        );
+    }
+
 }

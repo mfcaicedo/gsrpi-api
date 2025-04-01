@@ -22,10 +22,12 @@ public class ApplicationEntity {
     //Relacion debil con la tabla catalogos que es transversal
     @Column(name = "tipo_solicitud_cat_id", nullable = false)
     private Long applicationTypeCatId;
-    @Column(name = "fecha_creacion", columnDefinition = "TIMESTAMP", nullable = false)
+    @Column(name = "fecha_creacion", columnDefinition = "TIMESTAMPTZ", nullable = false)
     private LocalDateTime createAt;
-    @Column(name = "fecha_actualizacion", columnDefinition = "TIMESTAMP", nullable = true)
+    @Column(name = "fecha_actualizacion", columnDefinition = "TIMESTAMPTZ", nullable = true)
     private LocalDateTime updateAt;
+    @Column(name = "fecha_envio_ciarp", columnDefinition = "TIMESTAMPTZ", nullable = true)
+    private LocalDateTime ciarpSendDate;
     //Relacion many to one con departamento
     @ManyToOne
     @JoinColumn(name = "departamento_id", nullable = false)
@@ -46,7 +48,7 @@ public class ApplicationEntity {
     public ApplicationEntity() {
     }
 
-    public ApplicationEntity(Long applicationId, String description, Integer numberOfAuthors, Boolean termsAndConditions, Long applicationTypeCatId, LocalDateTime createAt, LocalDateTime updateAt, DepartmentEntity department, ProductionEntity production, StatusApplicationEntity applicationStatus) {
+    public ApplicationEntity(Long applicationId, String description, Integer numberOfAuthors, Boolean termsAndConditions, Long applicationTypeCatId, LocalDateTime createAt, LocalDateTime updateAt, LocalDateTime ciarpSendDate, DepartmentEntity department, ProductionEntity production, StatusApplicationEntity applicationStatus, List<TeacherApplicationEntity> teacherApplications) {
         this.applicationId = applicationId;
         this.description = description;
         this.numberOfAuthors = numberOfAuthors;
@@ -54,19 +56,7 @@ public class ApplicationEntity {
         this.applicationTypeCatId = applicationTypeCatId;
         this.createAt = createAt;
         this.updateAt = updateAt;
-        this.department = department;
-        this.production = production;
-        this.applicationStatus = applicationStatus;
-    }
-
-    public ApplicationEntity(Long applicationId, String description, Integer numberOfAuthors, Boolean termsAndConditions, Long applicationTypeCatId, LocalDateTime createAt, LocalDateTime updateAt, DepartmentEntity department, ProductionEntity production, StatusApplicationEntity applicationStatus, List<TeacherApplicationEntity> teacherApplications) {
-        this.applicationId = applicationId;
-        this.description = description;
-        this.numberOfAuthors = numberOfAuthors;
-        this.termsAndConditions = termsAndConditions;
-        this.applicationTypeCatId = applicationTypeCatId;
-        this.createAt = createAt;
-        this.updateAt = updateAt;
+        this.ciarpSendDate = ciarpSendDate;
         this.department = department;
         this.production = production;
         this.applicationStatus = applicationStatus;
@@ -127,6 +117,14 @@ public class ApplicationEntity {
 
     public void setUpdateAt(LocalDateTime updateAt) {
         this.updateAt = updateAt;
+    }
+
+    public LocalDateTime getCiarpSendDate() {
+        return ciarpSendDate;
+    }
+
+    public void setCiarpSendDate(LocalDateTime ciarpSendDate) {
+        this.ciarpSendDate = ciarpSendDate;
     }
 
     public DepartmentEntity getDepartment() {

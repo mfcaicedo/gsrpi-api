@@ -17,6 +17,7 @@ public class Application {
     private Long applicationTypeCatId;
     private LocalDateTime createAt;
     private LocalDateTime updateAt;
+    private LocalDateTime ciarpSendDate;
     //Relacion many to one con departamento
     private DepartmentEntity department;
     //Relacion one to one con produccion
@@ -29,7 +30,7 @@ public class Application {
     public Application() {
     }
 
-    public Application(Long applicationId, String description, Integer numberOfAuthors, Boolean termsAndConditions, Long applicationTypeCatId, LocalDateTime createAt, LocalDateTime updateAt, DepartmentEntity department, ProductionEntity production, StatusApplicationEntity applicationStatus, List<TeacherApplicationEntity> teacherApplications) {
+    public Application(Long applicationId, String description, Integer numberOfAuthors, Boolean termsAndConditions, Long applicationTypeCatId, LocalDateTime createAt, LocalDateTime updateAt, LocalDateTime ciarpSendDate, DepartmentEntity department, ProductionEntity production, StatusApplicationEntity applicationStatus, List<TeacherApplicationEntity> teacherApplications) {
         this.applicationId = applicationId;
         this.description = description;
         this.numberOfAuthors = numberOfAuthors;
@@ -37,6 +38,7 @@ public class Application {
         this.applicationTypeCatId = applicationTypeCatId;
         this.createAt = createAt;
         this.updateAt = updateAt;
+        this.ciarpSendDate = ciarpSendDate;
         this.department = department;
         this.production = production;
         this.applicationStatus = applicationStatus;
@@ -97,6 +99,14 @@ public class Application {
 
     public void setUpdateAt(LocalDateTime updateAt) {
         this.updateAt = updateAt;
+    }
+
+    public LocalDateTime getCiarpSendDate() {
+        return ciarpSendDate;
+    }
+
+    public void setCiarpSendDate(LocalDateTime ciarpSendDate) {
+        this.ciarpSendDate = ciarpSendDate;
     }
 
     public DepartmentEntity getDepartment() {

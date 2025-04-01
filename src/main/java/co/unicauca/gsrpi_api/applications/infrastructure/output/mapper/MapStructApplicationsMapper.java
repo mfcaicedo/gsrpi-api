@@ -3,7 +3,9 @@ package co.unicauca.gsrpi_api.applications.infrastructure.output.mapper;
 import co.unicauca.gsrpi_api.applications.domain.model.*;
 import co.unicauca.gsrpi_api.applications.infrastructure.output.entity.*;
 import co.unicauca.gsrpi_api.system_configuration.domain.model.Department;
+import co.unicauca.gsrpi_api.system_configuration.domain.model.Faculty;
 import co.unicauca.gsrpi_api.system_configuration.infrastructure.output.entity.DepartmentEntity;
+import co.unicauca.gsrpi_api.system_configuration.infrastructure.output.entity.FacultyEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -22,6 +24,7 @@ public interface MapStructApplicationsMapper {
 
     TeacherApplication teacherApplicationEntityToTeacherApplication(TeacherApplicationEntity teacherApplicationEntity);
     Production productionEntityToProduction(ProductionEntity productionEntity);
+    Faculty facultyEntityToFaculty(FacultyEntity facultyEntity);
     Department departmentEntityToDepartment(DepartmentEntity departmentEntity);
     StatusApplication statusApplicationEntityToStatusApplication(StatusApplicationEntity statusApplicationEntity);
     List<Application> applicationEntityListToApplicationList(List<ApplicationEntity> applicationEntityList);

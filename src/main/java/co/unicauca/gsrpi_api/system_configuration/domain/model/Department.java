@@ -13,6 +13,13 @@ public class Department {
         this.location = location;
     }
 
+    public Department(long departmentId, String name, String location, Faculty faculty) {
+        this.departmentId = departmentId;
+        this.name = name;
+        this.location = location;
+        this.faculty = faculty;
+    }
+
     public long getDepartmentId() {
         return departmentId;
     }
