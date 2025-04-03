@@ -96,4 +96,11 @@ public class ReviewApplicationsManagementUseCase implements ReviewApplicationsMa
                 )
         );
     }
+
+    @Override
+    public TeacherApplicationResponseGetPoints getPointsApplicationRecognition(Long teacherApplicationId) {
+        return this.reviewApplicationsMapper.teacherApplicationToTeacherApplicationResponseGetPoints(
+                this.reviewApplicationManagementOutPort.getPointsApplicationRecognition(teacherApplicationId)
+        );
+    }
 }

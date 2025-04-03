@@ -19,4 +19,5 @@ public interface ReviewApplicationManagementOutPort {
     List<Validation> getAllValidationsByApplicationIdAndPersonId(Long applicationId, Long personId);
     TeacherApplication savePointsApplicationRecognition(TeacherApplication teacherApplication);
     TeacherApplication updatePointsApplicationRecognition(TeacherApplication teacherApplication);
+    TeacherApplication getPointsApplicationRecognition(Long teacherApplicationId);
 }

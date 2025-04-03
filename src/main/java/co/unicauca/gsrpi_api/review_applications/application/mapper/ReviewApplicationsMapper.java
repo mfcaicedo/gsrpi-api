@@ -29,5 +29,6 @@ public interface ReviewApplicationsMapper {
     Application applicationRequestUpdateStatusToApplication(ApplicationRequestUpdateStatus applicationRequestUpdateStatus);
     TeacherApplicationResponse teacherApplicationToTeacherApplicationResponse(TeacherApplication teacherApplication);
     TeacherApplication teacherApplicationRequestSavePointsToTeacherApplication(TeacherApplicationRequestSavePoints teacherApplicationRequestSavePoints);
+    TeacherApplicationResponseGetPoints teacherApplicationToTeacherApplicationResponseGetPoints(TeacherApplication teacherApplication);
 }
 

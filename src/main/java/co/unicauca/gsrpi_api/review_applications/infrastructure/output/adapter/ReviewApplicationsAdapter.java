@@ -203,4 +203,11 @@ public class ReviewApplicationsAdapter implements ReviewApplicationManagementOut
         );
 
     }
+
+    @Override
+    public TeacherApplication getPointsApplicationRecognition(Long teacherApplicationId) {
+        return this.mapStructReviewApplicationsMapper.teacherApplicationEntityToTeacherApplication(
+                this.teacherApplicationRepository.findByTeacherApplicationId(teacherApplicationId)
+        );
+    }
 }

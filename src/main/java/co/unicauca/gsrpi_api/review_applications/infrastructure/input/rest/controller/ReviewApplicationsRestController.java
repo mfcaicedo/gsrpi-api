@@ -94,4 +94,11 @@ public class ReviewApplicationsRestController {
         );
     }
 
+    @GetMapping("obtener-puntos-reconocimiento-solicitud/{teacherApplicationId}")
+    public ResponseEntity<TeacherApplicationResponseGetPoints> getPointsApplicationRecognition(@PathVariable Long teacherApplicationId) {
+        return ResponseEntity.status(HttpStatus.OK).body(
+                this.reviewApplicationsManagementPort.getPointsApplicationRecognition(teacherApplicationId)
+        );
+    }
+
 }
