@@ -237,7 +237,6 @@ public class ApplicationManagementAdapter implements ApplicationManagementOutPor
         //Seteo la solicitud en la entidad de produccion
         productionEntity.setApplication(applicationEntity);
 
-
         //TODO: 7. Guardar la solicitud
         ApplicationEntity applicationEntitySave = this.applicationRepository.save(applicationEntity);
 
@@ -281,8 +280,6 @@ public class ApplicationManagementAdapter implements ApplicationManagementOutPor
     @Override
     @Transactional(readOnly = true)
     public List<Application> getAllApplicationByApplicationStatus(String applicationStatus) {
-        List<ApplicationEntity> applicationEntity = this.applicationRepository.findAllByApplicationStatus_Name(applicationStatus);
-        System.out.println(applicationEntity);
         return this.mapStructApplicationsMapper.applicationEntityListToApplicationList(
                 this.applicationRepository.findAllByApplicationStatus_Name(applicationStatus)
         );
