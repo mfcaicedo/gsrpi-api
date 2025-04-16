@@ -28,6 +28,7 @@ RUN mvn clean package -DskipTests
 FROM eclipse-temurin:17-jdk
 WORKDIR /app
 COPY --from=build /app/target/gsrpi-api-0.0.1-SNAPSHOT.jar gsrpi-api.jar
-EXPOSE 8080
-CMD ["java", "-jar", "gsrpi-api.jar"]
+#EXPOSE 8080
+CMD ["sh", "-c", "java -jar gsrpi-api.jar --server.port=${PORT}"]
+#CMD ["java", "-jar", "gsrpi-api.jar"]
 
