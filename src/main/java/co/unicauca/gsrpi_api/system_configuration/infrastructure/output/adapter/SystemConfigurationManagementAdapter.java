@@ -11,7 +11,8 @@ public class SystemConfigurationManagementAdapter implements SystemConfiguration
     private final ConfigurationRepository configurationRepository;
     private final MapStructConfigurationMapper mapStructConfigurationMapper;
 
-    public SystemConfigurationManagementAdapter(ConfigurationRepository configurationRepository, MapStructConfigurationMapper mapStructConfigurationMapper) {
+    public SystemConfigurationManagementAdapter(ConfigurationRepository configurationRepository,
+                                                MapStructConfigurationMapper mapStructConfigurationMapper) {
         this.configurationRepository = configurationRepository;
         this.mapStructConfigurationMapper = mapStructConfigurationMapper;
     }
